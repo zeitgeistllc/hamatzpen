@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>המצפן | מדריך הבחירות לכנסת 2026</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗳️</text></svg>" />
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logo">
+      <span class="logo-icon">🗳️</span>
+      <span class="logo-text">המצפן</span>
+    </div>
+    <nav class="nav">
+      <a href="index.html" class="nav-link active">מכונת ההצבעה</a>
+      <a href="parties.html" class="nav-link">המפלגות</a>
+      <a href="takanon.html" class="nav-link">תקנון</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-badge">בחירות לכנסת 2026</div>
+    <h1 class="hero-title">המצפן</h1>
+    <p class="hero-subtitle">
+      ענה על 10 שאלות קצרות על הנושאים שהכי חשובים לך —<br />
+      ונגיד לך לאיזו מפלגה הדעות שלך הכי קרובות.
+    </p>
+    <p class="hero-disclaimer">
+      הכלי מיועד לצרכי מידע בלבד ואינו מהווה המלצה פוליטית.
+      <a href="takanon.html">תקנון מלא ←</a>
+    </p>
+    <button class="btn btn-primary btn-lg" onclick="startQuiz()">התחל עכשיו →</button>
+  </div>
+  <div class="hero-deco" aria-hidden="true">✦ ✦ ✦</div>
+</section>
+
+<!-- ===== QUIZ ===== -->
+<section class="quiz-section" id="quiz-section" style="display:none;">
+  <div class="container quiz-container">
+
+    <!-- Progress bar -->
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+    <div class="progress-label" id="progress-label">שאלה 1 מתוך 10</div>
+
+    <!-- Question card -->
+    <div class="question-card" id="question-card">
+      <div class="question-number" id="q-number"></div>
+      <h2 class="question-text" id="q-text"></h2>
+      <p class="question-topic" id="q-topic"></p>
+      <div class="answers-grid" id="answers-grid"></div>
+    </div>
+
+    <div class="quiz-nav">
+      <button class="btn btn-outline" id="btn-back" onclick="prevQuestion()" style="display:none;">← חזור</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== RESULTS ===== -->
+<section class="results-section" id="results-section" style="display:none;">
+  <div class="container">
+    <h2 class="results-title">התוצאות שלך 🗳️</h2>
+    <p class="results-subtitle">על פי התשובות שלך, הנה ההתאמה לכל מפלגה:</p>
+
+    <div class="results-grid" id="results-grid"></div>
+
+    <div class="results-cta">
+      <button class="btn btn-outline" onclick="restartQuiz()">שחק שוב ←</button>
+      <a href="parties.html" class="btn btn-primary">קרא עוד על המפלגות ←</a>
+    </div>
+
+    <p class="results-disclaimer">
+      תוצאות אלה מבוססות על ההתאמה בין תשובותיך לעמדות המפלגות כפי שתועדו.
+      ייתכנו פרשנויות שונות. הכלי אינו מהווה המלצת הצבעה.
+      <a href="takanon.html">תקנון מלא</a>
+    </p>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how-section" id="how">
+  <div class="container">
+    <h2 class="section-title">איך זה עובד?</h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="how-icon">❓</div>
+        <h3>10 שאלות</h3>
+        <p>שאלות על הנושאים הכי מרכזיים בבחירות 2026: ביטחון, גיוס חרדים, כלכלה, דת ומדינה, שחיתות ועוד.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">⚖️</div>
+        <h3>ניקוד אובייקטיבי</h3>
+        <p>כל תשובה מקבלת ניקוד לפי ההתאמה לעמדות המוצהרות של כל מפלגה — על פי מצעים, הצהרות ודיווחים ציבוריים.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-icon">📊</div>
+        <h3>תוצאה אישית</h3>
+        <p>בסוף תקבל אחוזי התאמה לכל מפלגה, עם קישור ישיר לאתר ולמצע הרשמי.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">🗳️ המצפן | בחירות 2026</div>
+    <nav class="footer-nav">
+      <a href="index.html">דף הבית</a>
+      <a href="parties.html">המפלגות</a>
+      <a href="takanon.html">תקנון ופרטיות</a>
+    </nav>
+    <p class="footer-copy">
+      כלי זה מיועד למטרות מידע ציבורי בלבד. אינו כלי תעמולה ואינו מזוהה עם מפלגה כלשהי.<br />
+      © 2026 hamatzpen.co.il — כל הזכויות שמורות
+    </p>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+//  PARTY DEFINITIONS
+// ============================================================
+const PARTIES = {
+  likud:    { name: 'הליכוד',               leader: 'בנימין נתניהו',  bloc: 'ימין',        url: 'https://www.likud.org.il/' },
+  shas:     { name: 'ש״ס',             leader: 'אריה דרעי',      bloc: 'חרדי',        url: 'https://www.shas.org.il/' },
+  yahadut:  { name: 'יהדות התורה',          leader: 'יצחק גולדקנופף', bloc: 'חרדי',        url: 'https://yahaduttorah.org.il/' },
+  tzionit:  { name: 'הציונות הדתית',        leader: 'בצלאל סמוטריץ', bloc: 'ימין דתי',    url: 'https://zionutdatit.org.il/' },
+  otzma:    { name: 'עוצמה יהודית',         leader: 'איתמר בן גביר',  bloc: 'ימין קיצוני', url: 'https://www.otzma.org.il/' },
+  together: { name: 'ביחד (יש עתיד + בנט)', leader: 'לפיד ובנט',     bloc: 'מרכז-ימין',   url: 'https://yeshatid.org.il/' },
+  yashar:   { name: 'יש״ר',            leader: 'גדי איזנקוט',    bloc: 'מרכז-ימין',   url: 'https://www.jewishvirtuallibrary.org/yashar-with-eisenkot' },
+  gantz:    { name: 'המחנה הממלכתי',        leader: 'בני גנץ',        bloc: 'מרכז',        url: 'https://mamlachti.org.il/' },
+  beytenu:  { name: 'ישראל ביתנו',          leader: 'אביגדור ליברמן', bloc: 'ימין חילוני', url: 'https://www.beytenu.org.il/' },
+  democrats:{ name: 'הדמוקרטים',            leader: 'יאיר גולן',      bloc: 'שמאל',        url: 'https://democrats.org.il/' },
+  hadash:   { name: 'חד״ש-תע״ל',  leader: 'יוסף גבארין',   bloc: 'שמאל ערבי',   url: 'https://hadash.org.il/' },
+  raam:     { name: 'רע״מ',            leader: 'מנסור עבאס',     bloc: 'ערבי',        url: 'https://raam-party.com/' },
+  miluim:   { name: 'מפלגת המילואים',       leader: 'יועז הנדל',      bloc: 'מרכז-ימין',   url: 'https://miluimparty.co.il/' },
+};
+
+const QUESTIONS = [
+  {
+    id: 1,
+    topic: '⚖️ שוויון בנטל וגיוס חרדים',
+    text: 'מה עמדתך לגבי גיוס בני ישיבות לצבא?',
+    answers: [
+      { text: 'גיוס חובה מלא לכולם — כמו כל אזרח',                                       scores: { beytenu:5, miluim:5, together:4, yashar:4, gantz:3, democrats:3 } },
+      { text: 'שירות משמעותי — צבאי או אזרחי — עם מכסה מצומצמת לעילויים',                scores: { together:5, yashar:4, gantz:4, miluim:3 } },
+      { text: 'הסכמה מדעת עם הקהילה החרדית; פטור חלקי עם תמריצים',                       scores: { likud:4, tzionit:3 } },
+      { text: 'פטור מלא לבני ישיבות — לימוד תורה הוא גם הגנה על המדינה',                 scores: { shas:5, yahadut:5, otzma:2 } },
+    ]
+  },
+  {
+    id: 2,
+    topic: '💰 מדיניות כלכלית',
+    text: 'מה הגישה הנכונה לכלכלת ישראל?',
+    answers: [
+      { text: 'שוק חופשי: הפחתת מסים, צמצום ביורוקרטיה, עידוד השקעות פרטיות',            scores: { likud:5, beytenu:4, tzionit:4, together:3 } },
+      { text: 'מרכז: שוק חופשי עם רשת ביטחון חברתית חזקה ומאבק בריכוזיות',               scores: { together:5, yashar:4, gantz:4, miluim:3 } },
+      { text: 'סוציאל-דמוקרטיה: חיזוק שירותים ציבוריים, הגנת עובדים, צמצום פערים',      scores: { democrats:5, hadash:4, shas:3, raam:3 } },
+      { text: 'מאבק בטייקונים ובריכוזיות — הורדת יוקר מחיה כעדיפות ראשונה',             scores: { beytenu:4, together:3, miluim:3, yashar:2 } },
+    ]
+  },
+  {
+    id: 3,
+    topic: '🔒 ביטחון ויחסי חוץ',
+    text: 'מהי גישתך לסכסוך עם החמאס ולמדיניות החוץ?',
+    answers: [
+      { text: 'לחץ צבאי מקסימלי ללא פשרות, עמידה קשוחה מול כל איום',                    scores: { otzma:5, tzionit:5, likud:3 } },
+      { text: 'כוח צבאי חזק בשילוב שמירה על הברית עם ארה"ב ואירופה',                     scores: { likud:4, gantz:5, together:4, yashar:4, beytenu:4 } },
+      { text: 'פרגמטיות: שמירה על הביטחון, אך פתיחות לדיאלוג מדיני בתנאים מתאימים',     scores: { together:5, yashar:4, gantz:3, democrats:3 } },
+      { text: 'פתרון דיפלומטי בעדיפות; הפחתת כוח צבאי ודגש על זכויות אדם',              scores: { democrats:5, hadash:5, raam:3 } },
+    ]
+  },
+  {
+    id: 4,
+    topic: '🕍 דת ומדינה',
+    text: 'כיצד צריכה המדינה להתייחס לנושאי דת ומדינה?',
+    answers: [
+      { text: 'הגברת השפעת ההלכה — ישראל כמדינה יהודית בהשראת תורה',                    scores: { yahadut:5, shas:5, otzma:4, tzionit:3 } },
+      { text: 'שמירה על המצב הקיים — כבוד מסורת לצד חופש הפרט',                          scores: { likud:5, tzionit:3 } },
+      { text: 'הפרדת דת ומדינה: נישואין אזרחיים, תחבורה בשבת, ביטול מונופול הרבנות',    scores: { beytenu:5, together:5, yashar:4, gantz:3 } },
+      { text: 'שוויון דתי מלא לכלל הזרמים — ללא עדיפות לאורתודוקסים',                   scores: { democrats:5, hadash:4, together:3 } },
+    ]
+  },
+  {
+    id: 5,
+    topic: '🗺️ הסכסוך הפלסטיני',
+    text: 'מה העמדה הנכונה לגבי הסכסוך הישראלי-פלסטיני?',
+    answers: [
+      { text: 'סיפוח יהודה ושומרון — אין מדינה פלסטינית בשום תצורה',                    scores: { otzma:5, tzionit:5, likud:2 } },
+      { text: 'שמירת המצב הקיים; לא ויתורים ולא סיפוח פורמלי',                           scores: { likud:5, beytenu:3, gantz:2 } },
+      { text: 'פתרון מדיני עתידי בתנאי ביטחון — שתי מדינות כשיהיה שותף אמין',           scores: { together:5, yashar:4, gantz:4, beytenu:3, miluim:3 } },
+      { text: 'שתי מדינות עכשיו — סיום הכיבוש הוא התנאי לביטחון אמיתי',                 scores: { democrats:5, hadash:5, raam:4 } },
+    ]
+  },
+  {
+    id: 6,
+    topic: '📜 ממשל, שחיתות וחוקה',
+    text: 'מה עמדתך בנושא מערכת המשפט, שחיתות שלטונית וחוקה?',
+    answers: [
+      { text: 'הרפורמה המשפטית נחוצה — בית המשפט חרג מסמכותו, יש לאזן כוחות',          scores: { likud:5, tzionit:4, otzma:4, shas:3 } },
+      { text: 'מתנגד לרפורמה; שמירה על עצמאות שיפוטית עם שינויים מינוריים',             scores: { gantz:5, yashar:4, miluim:3 } },
+      { text: 'דרוש חוקה כתובה, הגבלת כהונת ראש ממשלה ושקיפות מלאה',                   scores: { together:5, yashar:4, beytenu:5, miluim:4 } },
+      { text: 'שינוי מהפכני: ועדת חקירה ל-7.10, ביטול שחיתות מוסדית',                   scores: { democrats:5, hadash:4, together:3 } },
+    ]
+  },
+  {
+    id: 7,
+    topic: '🏫 חינוך ולימודי ליבה',
+    text: 'מה עמדתך לגבי מערכת החינוך ולימודי ליבה?',
+    answers: [
+      { text: 'תמיכה מלאה בחינוך חרדי עצמאי ללא התערבות המדינה בתוכן',                  scores: { yahadut:5, shas:5 } },
+      { text: 'כבוד לחינוך הדתי לצד לימודי ליבה מינימליים (מתמטיקה ואנגלית)',           scores: { likud:4, tzionit:3 } },
+      { text: 'לימודי ליבה חובה לכלל המגזרים: מדעים, אנגלית, אזרחות',                   scores: { together:5, beytenu:5, yashar:4, gantz:3, miluim:4 } },
+      { text: 'חינוך ממלכתי אחיד, חינם מגיל 3, ביטול מענקים לתוכניות ללא ליבה',        scores: { democrats:5, hadash:4 } },
+    ]
+  },
+  {
+    id: 8,
+    topic: '🌈 זכויות אדם ושוויון חברתי',
+    text: 'מה עמדתך בנושא שוויון זכויות לכלל קבוצות האוכלוסייה?',
+    answers: [
+      { text: 'ישראל היא מדינת הלאום היהודית — עדיפות לזכויות הרוב היהודי',             scores: { otzma:5, tzionit:4, likud:3 } },
+      { text: 'שוויון אזרחי לכולם עם שמירת האופי היהודי-דמוקרטי של המדינה',            scores: { together:5, gantz:4, yashar:4, beytenu:3, miluim:3 } },
+      { text: 'שוויון מלא לכל האזרחים — ערבים, נשים, להט"ב, עולים',                    scores: { democrats:5, hadash:5, raam:3 } },
+      { text: 'שיפור ממוקד בתנאי חיים של האזרחים הערבים ורמת שירותי הרשות',            scores: { raam:5, hadash:3, democrats:2 } },
+    ]
+  },
+  {
+    id: 9,
+    topic: '🏥 מדיניות חברתית ובריאות',
+    text: 'מה עדיפות המדיניות החברתית בעיניך?',
+    answers: [
+      { text: 'הרחבת קצבאות ילדים וסיוע למשפחות עם ילדים רבים',                          scores: { shas:5, yahadut:5, likud:2 } },
+      { text: 'השקעה בבריאות ציבורית: הקצרת תורים, חיזוק קופות חולים, רפואת שיניים',   scores: { democrats:5, hadash:4, gantz:3, together:3, raam:4 } },
+      { text: 'צמצום יוקר מחיה: דיור, מזון ואנרגיה — דרך שוק תחרותי',                   scores: { beytenu:5, together:4, likud:3, yashar:3 } },
+      { text: 'תשתיות ושיקום לאזורי פריפריה ולחברה הערבית בפרט',                        scores: { raam:5, democrats:3, shas:3, miluim:2 } },
+    ]
+  },
+  {
+    id: 10,
+    topic: '🔍 אחריות על 7 באוקטובר',
+    text: 'מה צריך לעשות לגבי כשלי 7 באוקטובר?',
+    answers: [
+      { text: 'ועדת חקירה ממלכתית מיידית עם מסקנות מחייבות — כולל אחריות ראש הממשלה', scores: { together:5, yashar:5, democrats:5, hadash:4, beytenu:4, miluim:4, gantz:4 } },
+      { text: 'חקירה פנים-צבאית עצמאית ושינויי מבנה בצבא ובשב"כ',                      scores: { gantz:5, yashar:3, miluim:3 } },
+      { text: 'ממתין לסיום המלחמה — לא הזמן הנכון לחקור תוך כדי לחימה',               scores: { likud:5, shas:3, yahadut:2 } },
+      { text: 'ביקורת על כשלי המודיעין, אך הדגש על הניצחון הצבאי',                     scores: { tzionit:4, otzma:3, likud:3 } },
+    ]
+  }
+];
+
+// ============================================================
+//  STATE
+// ============================================================
+let currentQ = 0;
+let scores = {};
+
+function resetScores() {
+  scores = {};
+  Object.keys(PARTIES).forEach(k => { scores[k] = 0; });
+}
+
+// ============================================================
+//  QUIZ FLOW
+// ============================================================
+function startQuiz() {
+  currentQ = 0;
+  resetScores();
+  document.getElementById('quiz-section').style.display = 'block';
+  document.getElementById('results-section').style.display = 'none';
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('how').style.display = 'none';
+  renderQuestion();
+  window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - 70, behavior: 'smooth' });
+}
+
+function restartQuiz() {
+  document.getElementById('results-section').style.display = 'none';
+  document.getElementById('home').style.display = 'block';
+  document.getElementById('how').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  const total = QUESTIONS.length;
+  document.getElementById('progress-bar').style.width = ((currentQ / total) * 100) + '%';
+  document.getElementById('progress-label').textContent = 'שאלה ' + (currentQ + 1) + ' מתוך ' + total;
+  document.getElementById('q-number').textContent = 'שאלה ' + (currentQ + 1);
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('q-topic').textContent = q.topic;
+  const grid = document.getElementById('answers-grid');
+  grid.innerHTML = '';
+  q.answers.forEach(function(ans, i) {
+    const btn = document.createElement('button');
+    btn.className = 'answer-btn';
+    btn.textContent = ans.text;
+    btn.onclick = function() { selectAnswer(i); };
+    grid.appendChild(btn);
+  });
+  const backBtn = document.getElementById('btn-back');
+  backBtn.style.display = currentQ > 0 ? 'inline-flex' : 'none';
+}
+
+function selectAnswer(answerIndex) {
+  const q = QUESTIONS[currentQ];
+  const chosen = q.answers[answerIndex];
+  Object.entries(chosen.scores).forEach(function(entry) {
+    const party = entry[0], pts = entry[1];
+    if (scores[party] !== undefined) scores[party] += pts;
+  });
+  const btns = document.querySelectorAll('.answer-btn');
+  btns.forEach(function(b, i) {
+    b.disabled = true;
+    if (i === answerIndex) b.classList.add('selected');
+  });
+  setTimeout(function() {
+    currentQ++;
+    if (currentQ < QUESTIONS.length) {
+      renderQuestion();
+    } else {
+      showResults();
+    }
+  }, 350);
+}
+
+function prevQuestion() {
+  if (currentQ > 0) { currentQ--; renderQuestion(); }
+}
+
+// ============================================================
+//  RESULTS
+// ============================================================
+function computePcts() {
+  const maxPossibleTotal = {};
+  Object.keys(PARTIES).forEach(function(k) { maxPossibleTotal[k] = 0; });
+  QUESTIONS.forEach(function(q) {
+    Object.keys(PARTIES).forEach(function(k) {
+      const best = Math.max.apply(null, q.answers.map(function(a) { return a.scores[k] || 0; }));
+      maxPossibleTotal[k] += best;
+    });
+  });
+  const pcts = {};
+  Object.keys(PARTIES).forEach(function(k) {
+    pcts[k] = maxPossibleTotal[k] > 0 ? Math.round((scores[k] / maxPossibleTotal[k]) * 100) : 0;
+  });
+  return pcts;
+}
+
+function saveAnonymousResult(pcts, topPartyKey) {
+  try {
+    fetch('/api/vote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topParty: topPartyKey, scores: pcts }),
+    }).catch(function() {}); // fire-and-forget, never block UI
+  } catch(e) {}
+}
+
+function showResults() {
+  document.getElementById('quiz-section').style.display = 'none';
+  document.getElementById('results-section').style.display = 'block';
+
+  const pcts   = computePcts();
+  const sorted = Object.entries(pcts).sort(function(a, b) { return b[1] - a[1]; });
+
+  // Save anonymously (non-blocking)
+  if (sorted.length) saveAnonymousResult(pcts, sorted[0][0]);
+
+  const grid = document.getElementById('results-grid');
+  grid.innerHTML = '';
+  sorted.forEach(function(entry, idx) {
+    const key = entry[0], pct = entry[1];
+    const p = PARTIES[key];
+    const row = document.createElement('div');
+    row.className = 'result-row' + (idx === 0 ? ' top-match' : '');
+    row.innerHTML =
+      '<div>' +
+        '<div class="result-party-header">' +
+          '<span class="result-party-name">' + p.name + '</span>' +
+          (idx === 0 ? '<span class="result-badge">ההתאמה הגבוהה ביותר ✶</span>' : '') +
+        '</div>' +
+        '<div class="result-party-desc">' + p.leader + ' · ' + p.bloc + '</div>' +
+        '<div class="result-bar-wrap"><div class="result-bar" style="width:0%" data-pct="' + pct + '"></div></div>' +
+        '<a href="' + p.url + '" class="result-link" target="_blank" rel="noopener">לאתר המפלגה ←</a>' +
+      '</div>' +
+      '<div class="result-pct">' + pct + '%</div>';
+    grid.appendChild(row);
+  });
+
+  requestAnimationFrame(function() {
+    document.querySelectorAll('.result-bar').forEach(function(bar) {
+      const pct = bar.getAttribute('data-pct');
+      setTimeout(function() { bar.style.width = pct + '%'; }, 50);
+    });
+  });
+
+  window.scrollTo({ top: document.getElementById('results-section').offsetTop - 70, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>

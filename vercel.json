@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    { "source": "/admin-hamatzpen", "destination": "/api/admin-hamatzpen" }
+  ],
+  "redirects": [
+    { "source": "/admin.html", "destination": "/", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/api/admin/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "no-store" }]
+    }
+  ]
+}

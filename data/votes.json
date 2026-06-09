@@ -1,0 +1,40 @@
+[
+  {
+    "ts": "2026-06-09T09:08:11.202Z",
+    "topParty": "together",
+    "scores": {
+      "likud": 20,
+      "together": 85,
+      "gantz": 60,
+      "beytenu": 55,
+      "yashar": 70,
+      "democrats": 30,
+      "shas": 5,
+      "yahadut": 0,
+      "tzionit": 10,
+      "otzma": 5,
+      "hadash": 20,
+      "raam": 15,
+      "miluim": 65
+    }
+  },
+  {
+    "ts": "2026-06-09T09:08:11.236Z",
+    "topParty": "beytenu",
+    "scores": {
+      "likud": 30,
+      "together": 60,
+      "gantz": 50,
+      "beytenu": 88,
+      "yashar": 65,
+      "democrats": 25,
+      "shas": 0,
+      "yahadut": 0,
+      "tzionit": 15,
+      "otzma": 10,
+      "hadash": 10,
+      "raam": 5,
+      "miluim": 70
+    }
+  }
+]
