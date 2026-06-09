@@ -1,368 +1,536 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="he" dir="rtl" class="lang-he">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>המפלגות | המצפן 2026</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='0 0 48 48' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='24' cy='24' r='21' stroke='%231a4fa8' stroke-width='2' fill='none'/%3E%3Cpath d='M24 5 L27 21 L24 19 L21 21 Z' fill='%231a4fa8'/%3E%3Cpath d='M24 43 L27 27 L24 29 L21 27 Z' fill='%23d97706'/%3E%3Ccircle cx='24' cy='24' r='3' fill='%231a4fa8'/%3E%3C/svg%3E" />
 </head>
 <body>
 
 <header class="site-header">
   <div class="container header-inner">
-    <div class="logo">
-      <span class="logo-icon">🗳️</span>
-      <span class="logo-text">המצפן</span>
-    </div>
+    <a href="index.html" class="logo">
+      <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- compass ring -->
+      <circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="2" fill="none"/>
+      <!-- cardinal ticks: N bold, E/S/W lighter -->
+      <line x1="20" y1="3"  x2="20" y2="8"  stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="37" y1="20" x2="32" y2="20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="20" y1="37" x2="20" y2="32" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <line x1="3"  y1="20" x2="8"  y2="20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+      <!-- pencil needle — tip points UP (north = direction to mark your vote) -->
+      <!-- tip (sharp triangle) -->
+      <path d="M20 5.5 L22.2 16.5 L17.8 16.5 Z" fill="currentColor"/>
+      <!-- body -->
+      <rect x="17.8" y="16.5" width="4.4" height="6.5" fill="currentColor"/>
+      <!-- ferrule (metal band) -->
+      <rect x="17.8" y="23"   width="4.4" height="1.5" fill="currentColor" opacity="0.5"/>
+      <!-- eraser (south) -->
+      <rect x="18.2" y="24.5" width="3.6" height="4"   rx="1.2" fill="currentColor" opacity="0.35"/>
+      <!-- centre pivot -->
+      <circle cx="20" cy="20" r="1.5" fill="currentColor" opacity="0.15"/>
+    </svg>
+      <span class="logo-text">
+        <span data-lang="he">המצפן</span>
+        <span data-lang="en">The Compass</span>
+      </span>
+    </a>
     <nav class="nav">
-      <a href="index.html" class="nav-link">מכונת ההצבעה</a>
-      <a href="parties.html" class="nav-link active">המפלגות</a>
-      <a href="takanon.html" class="nav-link">תקנון</a>
+      <a href="index.html" class="nav-link">
+        <span data-lang="he">מכונת ההצבעה</span>
+        <span data-lang="en">Voting Machine</span>
+      </a>
+      <a href="parties.html" class="nav-link active">
+        <span data-lang="he">המפלגות</span>
+        <span data-lang="en">Parties</span>
+      </a>
+      <a href="takanon.html" class="nav-link">
+        <span data-lang="he">תקנון</span>
+        <span data-lang="en">Terms</span>
+      </a>
     </nav>
+    <div class="lang-toggle">
+      <button class="lang-btn" data-lang="he" onclick="setLang('he')">עב</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    </div>
   </div>
 </header>
 
 <section class="page-hero">
   <div class="container">
-    <h1>המפלגות לבחירות 2026</h1>
-    <p>סקירה של כל המפלגות הצפויות להיות רלוונטיות — מצע, קהל יעד, קישורים רשמיים.</p>
+    <h1>
+      <span data-lang="he">המפלגות לבחירות 2026</span>
+      <span data-lang="en">Parties for the 2026 Elections</span>
+    </h1>
+    <p>
+      <span data-lang="he">סקירה של כל המפלגות הצפויות להיות רלוונטיות — מצע, קהל יעד, קישורים רשמיים.</span>
+      <span data-lang="en">An overview of all expected relevant parties — platform, target voters, and official links.</span>
+    </p>
   </div>
 </section>
 
 <section class="parties-section">
   <div class="container">
 
-    <!-- ===== גוש ימין–חרדים ===== -->
-    <div class="bloc-title">🔴 גוש הימין–חרדים (גוש נתניהו)</div>
+    <!-- ===== Right-Haredi Bloc ===== -->
+    <div class="bloc-title">
+      <span data-lang="he">🔴 גוש הימין–חרדים (גוש נתניהו)</span>
+      <span data-lang="en">🔴 Right–Haredi Bloc (Netanyahu's Coalition)</span>
+    </div>
 
     <div class="party-card right-bloc">
       <div class="party-header">
         <div>
-          <div class="party-name">הליכוד</div>
-          <div class="party-leader">מנהיג: בנימין נתניהו</div>
+          <div class="party-name">
+            <span data-lang="he">הליכוד</span>
+            <span data-lang="en">Likud</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: בנימין נתניהו</span>
+            <span data-lang="en">Leader: Benjamin Netanyahu</span>
+          </div>
         </div>
-        <span class="party-tag">ימין לאומי</span>
+        <span class="party-tag">
+          <span data-lang="he">ימין לאומי</span>
+          <span data-lang="en">National Right</span>
+        </span>
       </div>
       <p class="party-desc">
-        המפלגה הגדולה בכנסת (~32 מושבים). משלבת ימין לאומי-נצי עם כלכלה ליברלית-קפיטליסטית.
-        מדגישה שוק חופשי, הפחתת רגולציה ומדיניות ביטחון קשוחה. מתנגדת למדינה פלסטינית ריבונית
-        ותומכת בהרחבת ההתנחלויות.
+        <span data-lang="he">המפלגה הגדולה בכנסת (~32 מושבים). משלבת ימין לאומי-נצי עם כלכלה ליברלית-קפיטליסטית. מדגישה שוק חופשי, הפחתת רגולציה ומדיניות ביטחון קשוחה. מתנגדת למדינה פלסטינית ריבונית ותומכת בהרחבת ההתנחלויות.</span>
+        <span data-lang="en">Israel's largest party (~32 seats). Combines hawkish nationalism with liberal-capitalist economics. Emphasizes free markets, deregulation, and tough security policy. Opposes a sovereign Palestinian state and supports expanding settlements.</span>
       </p>
       <div class="party-pillars">
-        <span class="pillar">ביטחון נץ</span>
-        <span class="pillar">שוק חופשי</span>
-        <span class="pillar">הרחבת התנחלויות</span>
-        <span class="pillar">ספקנות כלפי אירופה</span>
+        <span class="pillar"><span data-lang="he">ביטחון נץ</span><span data-lang="en">Hawkish Security</span></span>
+        <span class="pillar"><span data-lang="he">שוק חופשי</span><span data-lang="en">Free Market</span></span>
+        <span class="pillar"><span data-lang="he">הרחבת התנחלויות</span><span data-lang="en">Settlement Expansion</span></span>
+        <span class="pillar"><span data-lang="he">ספקנות כלפי אירופה</span><span data-lang="en">Euro-Skepticism</span></span>
       </div>
       <div class="party-links">
-        <a href="https://www.likud.org.il/" target="_blank" rel="noopener" class="party-link">🔗 אתר רשמי</a>
-        <a href="https://en.wikipedia.org/wiki/Likud" target="_blank" rel="noopener" class="party-link">📖 ויקיפדיה</a>
+        <a href="https://www.likud.org.il/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">אתר רשמי</span><span data-lang="en">Official Site</span></a>
+        <a href="https://en.wikipedia.org/wiki/Likud" target="_blank" rel="noopener" class="party-link">📖 Wikipedia</a>
       </div>
     </div>
 
     <div class="party-card haredi-bloc">
       <div class="party-header">
         <div>
-          <div class="party-name">ש״ס</div>
-          <div class="party-leader">מנהיג: אריה דרעי</div>
+          <div class="party-name">
+            <span data-lang="he">ש״ס</span>
+            <span data-lang="en">Shas</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: אריה דרעי</span>
+            <span data-lang="en">Leader: Aryeh Deri</span>
+          </div>
         </div>
-        <span class="party-tag">חרדי ספרדי</span>
+        <span class="party-tag">
+          <span data-lang="he">חרדי ספרדי</span>
+          <span data-lang="en">Sephardi Haredi</span>
+        </span>
       </div>
       <p class="party-desc">
-        מפלגת החרדים הספרדים והמסורתיים המזרחיים. מחברת בין אג׳נדה דתית שמרנית לדגש חזק על
-        רווחה חברתית למעמדות נמוכים. מתנגדת לגיוס חרדים ומקדמת תקצוב מערכת החינוך הדתית
-        וקצבאות ילדים.
+        <span data-lang="he">מפלגת החרדים הספרדים והמסורתיים המזרחיים. מחברת בין אג׳נדה דתית שמרנית לדגש חזק על רווחה חברתית למעמדות נמוכים. מתנגדת לגיוס חרדים ומקדמת תקצוב מערכת החינוך הדתית וקצבאות ילדים.</span>
+        <span data-lang="en">The party of Sephardi and traditional Mizrahi Jews. Combines a conservative religious agenda with strong social welfare for lower-income communities. Opposes drafting Haredi men and promotes funding for religious education and child allowances.</span>
       </p>
       <div class="party-pillars">
-        <span class="pillar">רווחה חברתית</span>
-        <span class="pillar">פטור גיוס חרדים</span>
-        <span class="pillar">חינוך דתי</span>
-        <span class="pillar">קצבאות ילדים</span>
+        <span class="pillar"><span data-lang="he">רווחה חברתית</span><span data-lang="en">Social Welfare</span></span>
+        <span class="pillar"><span data-lang="he">פטור גיוס חרדים</span><span data-lang="en">Draft Exemption</span></span>
+        <span class="pillar"><span data-lang="he">חינוך דתי</span><span data-lang="en">Religious Education</span></span>
+        <span class="pillar"><span data-lang="he">קצבאות ילדים</span><span data-lang="en">Child Allowances</span></span>
       </div>
       <div class="party-links">
-        <a href="https://www.shas.org.il/" target="_blank" rel="noopener" class="party-link">🔗 אתר רשמי</a>
-        <a href="https://en.wikipedia.org/wiki/Shas" target="_blank" rel="noopener" class="party-link">📖 ויקיפדיה</a>
+        <a href="https://www.shas.org.il/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">אתר רשמי</span><span data-lang="en">Official Site</span></a>
+        <a href="https://en.wikipedia.org/wiki/Shas" target="_blank" rel="noopener" class="party-link">📖 Wikipedia</a>
       </div>
     </div>
 
     <div class="party-card haredi-bloc">
       <div class="party-header">
         <div>
-          <div class="party-name">יהדות התורה</div>
-          <div class="party-leader">מנהיג: יצחק גולדקנופף</div>
+          <div class="party-name">
+            <span data-lang="he">יהדות התורה</span>
+            <span data-lang="en">United Torah Judaism</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: יצחק גולדקנופף</span>
+            <span data-lang="en">Leader: Yitzhak Goldknopf</span>
+          </div>
         </div>
-        <span class="party-tag">חרדי אשכנזי</span>
+        <span class="party-tag">
+          <span data-lang="he">חרדי אשכנזי</span>
+          <span data-lang="en">Ashkenazi Haredi</span>
+        </span>
       </div>
       <p class="party-desc">
-        גוש חרדי אשכנזי (אגודת ישראל + דגל התורה) המתמקד כמעט לחלוטין באינטרסים של הציבור
-        החרדי: פטור גיוס מלא, תקציבי ישיבות, שמירת שבת במרחב הציבורי, והגנה על סמכות הרבנים.
+        <span data-lang="he">גוש חרדי אשכנזי (אגודת ישראל + דגל התורה) המתמקד כמעט לחלוטין באינטרסים של הציבור החרדי: פטור גיוס מלא, תקציבי ישיבות, שמירת שבת במרחב הציבורי, והגנה על סמכות הרבנים.</span>
+        <span data-lang="en">The Ashkenazi Haredi bloc (Agudat Yisrael + Degel HaTorah). Focuses almost exclusively on Haredi community interests: full draft exemption, yeshiva funding, Shabbat observance in public life, and protecting rabbinical authority.</span>
       </p>
       <div class="party-pillars">
-        <span class="pillar">פטור גיוס מוחלט</span>
-        <span class="pillar">תקציבי ישיבות</span>
-        <span class="pillar">שמירת שבת</span>
-        <span class="pillar">סמכות רבנית</span>
+        <span class="pillar"><span data-lang="he">פטור גיוס מוחלט</span><span data-lang="en">Full Draft Exemption</span></span>
+        <span class="pillar"><span data-lang="he">תקציבי ישיבות</span><span data-lang="en">Yeshiva Funding</span></span>
+        <span class="pillar"><span data-lang="he">שמירת שבת</span><span data-lang="en">Shabbat Observance</span></span>
+        <span class="pillar"><span data-lang="he">סמכות רבנית</span><span data-lang="en">Rabbinical Authority</span></span>
       </div>
       <div class="party-links">
-        <a href="https://yahaduttorah.org.il/" target="_blank" rel="noopener" class="party-link">🔗 אתר רשמי</a>
-        <a href="https://en.wikipedia.org/wiki/United_Torah_Judaism" target="_blank" rel="noopener" class="party-link">📖 ויקיפדיה</a>
+        <a href="https://yahaduttorah.org.il/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">אתר רשמי</span><span data-lang="en">Official Site</span></a>
+        <a href="https://en.wikipedia.org/wiki/United_Torah_Judaism" target="_blank" rel="noopener" class="party-link">📖 Wikipedia</a>
       </div>
     </div>
 
     <div class="party-card right-bloc">
       <div class="party-header">
         <div>
-          <div class="party-name">הציונות הדתית</div>
-          <div class="party-leader">מנהיג: בצלאל סמוטריץ׳</div>
+          <div class="party-name">
+            <span data-lang="he">הציונות הדתית</span>
+            <span data-lang="en">Religious Zionism</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: בצלאל סמוטריץ׳</span>
+            <span data-lang="en">Leader: Bezalel Smotrich</span>
+          </div>
         </div>
-        <span class="party-tag">ימין דתי לאומי</span>
+        <span class="party-tag">
+          <span data-lang="he">ימין דתי לאומי</span>
+          <span data-lang="en">Religious-National Right</span>
+        </span>
       </div>
       <p class="party-desc">
-        מפלגת ימין דתי-משיחי המדגישה אחדות העם והארץ. מתנגדת לכל ויתור טריטוריאלי, תומכת
-        בסיפוח חלקים נרחבים מהגדה, בהעדפת משפט יהודי ובהרחבת ההתיישבות. ניאו-ליברלית כלכלית.
+        <span data-lang="he">מפלגת ימין דתי-משיחי המדגישה אחדות העם והארץ. מתנגדת לכל ויתור טריטוריאלי, תומכת בסיפוח חלקים נרחבים מהגדה, בהעדפת משפט יהודי ובהרחבת ההתיישבות. ניאו-ליברלית כלכלית.</span>
+        <span data-lang="en">A messianic religious-right party emphasizing the unity of the Jewish people and the Land of Israel. Opposes any territorial compromise, supports annexing large parts of the West Bank, applying Jewish law, and expanding settlements. Neo-liberal economically.</span>
       </p>
       <div class="party-pillars">
-        <span class="pillar">סיפוח הגדה</span>
-        <span class="pillar">ניאו-ליברליזם</span>
-        <span class="pillar">ציונות דתית</span>
-        <span class="pillar">הרחבת התיישבות</span>
+        <span class="pillar"><span data-lang="he">סיפוח הגדה</span><span data-lang="en">West Bank Annexation</span></span>
+        <span class="pillar"><span data-lang="he">ניאו-ליברליזם</span><span data-lang="en">Neo-Liberalism</span></span>
+        <span class="pillar"><span data-lang="he">ציונות דתית</span><span data-lang="en">Religious Zionism</span></span>
+        <span class="pillar"><span data-lang="he">הרחבת התיישבות</span><span data-lang="en">Settlement Expansion</span></span>
       </div>
       <div class="party-links">
-        <a href="https://zionutdatit.org.il/" target="_blank" rel="noopener" class="party-link">🔗 אתר רשמי</a>
-        <a href="https://en.wikipedia.org/wiki/Religious_Zionist_Party" target="_blank" rel="noopener" class="party-link">📖 ויקיפדיה</a>
+        <a href="https://zionutdatit.org.il/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">אתר רשמי</span><span data-lang="en">Official Site</span></a>
+        <a href="https://en.wikipedia.org/wiki/Religious_Zionist_Party" target="_blank" rel="noopener" class="party-link">📖 Wikipedia</a>
       </div>
     </div>
 
     <div class="party-card right-bloc">
       <div class="party-header">
         <div>
-          <div class="party-name">עוצמה יהודית</div>
-          <div class="party-leader">מנהיג: איתמר בן גביר</div>
+          <div class="party-name">
+            <span data-lang="he">עוצמה יהודית</span>
+            <span data-lang="en">Otzma Yehudit</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: איתמר בן גביר</span>
+            <span data-lang="en">Leader: Itamar Ben Gvir</span>
+          </div>
         </div>
-        <span class="party-tag">ימין קיצוני</span>
+        <span class="party-tag">
+          <span data-lang="he">ימין קיצוני</span>
+          <span data-lang="en">Far Right</span>
+        </span>
       </div>
       <p class="party-desc">
-        ימין יהודי-לאומני קיצוני בהשראה כהניסטית. מדגיש ענישה קשה לפלסטינים וערבים, תמיכה
-        בהרחבת נשק לציבור היהודי, והגברת נוכחות יהודית במוקדי חיכוך (הר הבית וכו׳).
+        <span data-lang="he">ימין יהודי-לאומני קיצוני בהשראה כהניסטית. מדגיש ענישה קשה לפלסטינים וערבים, תמיכה בהרחבת נשק לציבור היהודי, והגברת נוכחות יהודית במוקדי חיכוך (הר הבית וכו׳).</span>
+        <span data-lang="en">An extreme Jewish-nationalist party inspired by Kahanism. Advocates severe punishment for Palestinians, expanded gun rights for Jewish citizens, and increased Jewish presence at contested holy sites (Temple Mount, etc.).</span>
       </p>
       <div class="party-pillars">
-        <span class="pillar">קו קשוח מאוד</span>
-        <span class="pillar">הר הבית</span>
-        <span class="pillar">נשק לאזרחים</span>
-        <span class="pillar">ענישה מחמירה</span>
+        <span class="pillar"><span data-lang="he">קו קשוח מאוד</span><span data-lang="en">Maximalist Hardline</span></span>
+        <span class="pillar"><span data-lang="he">הר הבית</span><span data-lang="en">Temple Mount</span></span>
+        <span class="pillar"><span data-lang="he">נשק לאזרחים</span><span data-lang="en">Civilian Guns</span></span>
+        <span class="pillar"><span data-lang="he">ענישה מחמירה</span><span data-lang="en">Harsh Penalties</span></span>
       </div>
       <div class="party-links">
-        <a href="https://www.otzma.org.il/" target="_blank" rel="noopener" class="party-link">🔗 אתר רשמי</a>
-        <a href="https://en.wikipedia.org/wiki/Otzma_Yehudit" target="_blank" rel="noopener" class="party-link">📖 ויקיפדיה</a>
+        <a href="https://www.otzma.org.il/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">אתר רשמי</span><span data-lang="en">Official Site</span></a>
+        <a href="https://en.wikipedia.org/wiki/Otzma_Yehudit" target="_blank" rel="noopener" class="party-link">📖 Wikipedia</a>
       </div>
     </div>
 
-    <!-- ===== גוש מרכז-ימין ===== -->
-    <div class="bloc-title">🔵 גוש המרכז–ימין (אופוזיציה ציונית)</div>
-
-    <div class="party-card center-bloc">
-      <div class="party-header">
-        <div>
-          <div class="party-name">ביחד — יש עתיד + בנט 2026</div>
-          <div class="party-leader">מנהיגים: יאיר לפיד ונפתלי בנט</div>
-        </div>
-        <span class="party-tag">מרכז-ימין</span>
-      </div>
-      <p class="party-desc">
-        רשימה משותפת שנוצרה באפריל 2026, המאגדת את יש עתיד ובנט 2026. מציגה שני ראשי ממשלה
-        לשעבר, קו ביטחוני נץ-מתון, תמיכה בחוקה, גיוס חרדים ושוויון בנטל, ועדת חקירה ל-7.10,
-        ודגש על הייטק ומעמד הביניים.
-      </p>
-      <div class="party-pillars">
-        <span class="pillar">שוויון בנטל</span>
-        <span class="pillar">חוקה</span>
-        <span class="pillar">ועדת חקירה 7.10</span>
-        <span class="pillar">הייטק</span>
-        <span class="pillar">ברית מערבית</span>
-      </div>
-      <div class="party-links">
-        <a href="https://yeshatid.org.il/" target="_blank" rel="noopener" class="party-link">🔗 יש עתיד</a>
-        <a href="https://en.idi.org.il/israeli-elections-and-parties/parties/bennett-2026/" target="_blank" rel="noopener" class="party-link">📖 מידע IDI</a>
-      </div>
+    <!-- ===== Center-Right Bloc ===== -->
+    <div class="bloc-title">
+      <span data-lang="he">🔵 גוש המרכז–ימין (אופוזיציה ציונית)</span>
+      <span data-lang="en">🔵 Center–Right Bloc (Zionist Opposition)</span>
     </div>
 
     <div class="party-card center-bloc">
       <div class="party-header">
         <div>
-          <div class="party-name">יש"ר (Yashar!)</div>
-          <div class="party-leader">מנהיג: גדי איזנקוט</div>
+          <div class="party-name">
+            <span data-lang="he">ביחד — יש עתיד + בנט 2026</span>
+            <span data-lang="en">Together — Yesh Atid + Bennett 2026</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיגים: יאיר לפיד ונפתלי בנט</span>
+            <span data-lang="en">Leaders: Yair Lapid &amp; Naftali Bennett</span>
+          </div>
         </div>
-        <span class="party-tag">מרכז-ימין ממלכתי</span>
+        <span class="party-tag">
+          <span data-lang="he">מרכז-ימין</span>
+          <span data-lang="en">Center-Right</span>
+        </span>
       </div>
       <p class="party-desc">
-        מפלגת מרכז-ימין חדשה בראשות הרמטכ״ל לשעבר. מדגישה יושרה, אחריות ביטחונית, שוויון
-        בנטל ושיקום האמון בין הציבור למוסדות. קהל יעד: קצינים, מילואימניקים ו"מחנה ממלכתי"
-        מאוכזב.
+        <span data-lang="he">רשימה משותפת שנוצרה באפריל 2026, המאגדת את יש עתיד ובנט 2026. מציגה שני ראשי ממשלה לשעבר, קו ביטחוני נץ-מתון, תמיכה בחוקה, גיוס חרדים ושוויון בנטל, ועדת חקירה ל-7.10, ודגש על הייטק ומעמד הביניים.</span>
+        <span data-lang="en">A joint list formed in April 2026 uniting Yesh Atid and Bennett 2026. Features two former prime ministers, a moderate-hawk security line, support for a constitution, equal burden-sharing (Haredi draft), an Oct. 7 inquiry commission, and a focus on hi-tech and the middle class.</span>
       </p>
       <div class="party-pillars">
-        <span class="pillar">ממלכתיות</span>
-        <span class="pillar">ביטחון ארוך טווח</span>
-        <span class="pillar">שוויון בנטל</span>
-        <span class="pillar">אחריות פיסקלית</span>
+        <span class="pillar"><span data-lang="he">שוויון בנטל</span><span data-lang="en">Equal Burden-Sharing</span></span>
+        <span class="pillar"><span data-lang="he">חוקה</span><span data-lang="en">Constitution</span></span>
+        <span class="pillar"><span data-lang="he">ועדת חקירה 7.10</span><span data-lang="en">Oct. 7 Inquiry</span></span>
+        <span class="pillar"><span data-lang="he">הייטק</span><span data-lang="en">Hi-Tech</span></span>
+        <span class="pillar"><span data-lang="he">ברית מערבית</span><span data-lang="en">Western Alliance</span></span>
       </div>
       <div class="party-links">
-        <a href="https://www.jewishvirtuallibrary.org/yashar-with-eisenkot" target="_blank" rel="noopener" class="party-link">📖 מידע</a>
+        <a href="https://yeshatid.org.il/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">יש עתיד</span><span data-lang="en">Yesh Atid</span></a>
+        <a href="https://en.idi.org.il/israeli-elections-and-parties/parties/bennett-2026/" target="_blank" rel="noopener" class="party-link">📖 IDI</a>
       </div>
     </div>
 
     <div class="party-card center-bloc">
       <div class="party-header">
         <div>
-          <div class="party-name">המחנה הממלכתי</div>
-          <div class="party-leader">מנהיג: בני גנץ</div>
+          <div class="party-name">
+            <span data-lang="he">יש"ר (Yashar!)</span>
+            <span data-lang="en">Yashar!</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: גדי איזנקוט</span>
+            <span data-lang="en">Leader: Gadi Eisenkot</span>
+          </div>
         </div>
-        <span class="party-tag">מרכז</span>
+        <span class="party-tag">
+          <span data-lang="he">מרכז-ימין ממלכתי</span>
+          <span data-lang="en">Centrist-Right / Statist</span>
+        </span>
       </div>
       <p class="party-desc">
-        מפלגת מרכז ביטחוניסטית בדגש על יציבות, חיזוק מוסדות המדינה ושיקום היחסים עם ארה״ב.
-        גנץ מציג עצמו כ"מרגיע" — לא מהפכן חוקתי, אלא מנהיג שמחזיר את האמינות לממשלה.
+        <span data-lang="he">מפלגת מרכז-ימין חדשה בראשות הרמטכ״ל לשעבר. מדגישה יושרה, אחריות ביטחונית, שוויון בנטל ושיקום האמון בין הציבור למוסדות. קהל יעד: קצינים, מילואימניקים ו"מחנה ממלכתי" מאוכזב.</span>
+        <span data-lang="en">A new center-right party led by the former IDF Chief of Staff. Emphasizes integrity, security accountability, equal burden-sharing, and restoring public trust in state institutions. Targets officers, reservists, and disillusioned "statist camp" voters.</span>
       </p>
       <div class="party-pillars">
-        <span class="pillar">ממלכתי מתון</span>
-        <span class="pillar">ביטחוניסט</span>
-        <span class="pillar">שיקום צה״ל</span>
-        <span class="pillar">ברית אמריקאית</span>
+        <span class="pillar"><span data-lang="he">ממלכתיות</span><span data-lang="en">Statism</span></span>
+        <span class="pillar"><span data-lang="he">ביטחון ארוך טווח</span><span data-lang="en">Long-Term Security</span></span>
+        <span class="pillar"><span data-lang="he">שוויון בנטל</span><span data-lang="en">Equal Burden</span></span>
+        <span class="pillar"><span data-lang="he">אחריות פיסקלית</span><span data-lang="en">Fiscal Responsibility</span></span>
       </div>
       <div class="party-links">
-        <a href="https://mamlachti.org.il/" target="_blank" rel="noopener" class="party-link">🔗 אתר רשמי</a>
-        <a href="https://en.wikipedia.org/wiki/National_Unity_(Israel)" target="_blank" rel="noopener" class="party-link">📖 ויקיפדיה</a>
+        <a href="https://www.jewishvirtuallibrary.org/yashar-with-eisenkot" target="_blank" rel="noopener" class="party-link">📖 <span data-lang="he">מידע</span><span data-lang="en">Info</span></a>
       </div>
     </div>
 
     <div class="party-card center-bloc">
       <div class="party-header">
         <div>
-          <div class="party-name">ישראל ביתנו</div>
-          <div class="party-leader">מנהיג: אביגדור ליברמן</div>
+          <div class="party-name">
+            <span data-lang="he">המחנה הממלכתי</span>
+            <span data-lang="en">National Unity</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: בני גנץ</span>
+            <span data-lang="en">Leader: Benny Gantz</span>
+          </div>
         </div>
-        <span class="party-tag">ימין חילוני</span>
+        <span class="party-tag">
+          <span data-lang="he">מרכז</span>
+          <span data-lang="en">Center</span>
+        </span>
       </div>
       <p class="party-desc">
-        ימין חילוני קשוח: ליברליזם כלכלי, אנטי-קלריקליזם חזק, גיוס חובה מלא וצמצום הטבות
-        לחרדים ולמי שאינו משרת. מדיניות "משרתים–משלמים" כציר מרכזי. קהל בולט: עולי חבר המדינות
-        וימין חילוני.
+        <span data-lang="he">מפלגת מרכז ביטחוניסטית בדגש על יציבות, חיזוק מוסדות המדינה ושיקום היחסים עם ארה״ב. גנץ מציג עצמו כ"מרגיע" — לא מהפכן חוקתי, אלא מנהיג שמחזיר את האמינות לממשלה.</span>
+        <span data-lang="en">A security-focused centrist party emphasizing stability, strengthening state institutions, and restoring ties with the US. Gantz positions himself as a calming force — not a constitutional revolutionary, but a leader who restores government credibility.</span>
       </p>
       <div class="party-pillars">
-        <span class="pillar">גיוס חובה</span>
-        <span class="pillar">אנטי-חרדי</span>
-        <span class="pillar">ליברליזם כלכלי</span>
-        <span class="pillar">עולים</span>
+        <span class="pillar"><span data-lang="he">ממלכתי מתון</span><span data-lang="en">Moderate Statist</span></span>
+        <span class="pillar"><span data-lang="he">ביטחוניסט</span><span data-lang="en">Security-First</span></span>
+        <span class="pillar"><span data-lang="he">שיקום צה״ל</span><span data-lang="en">IDF Rebuilding</span></span>
+        <span class="pillar"><span data-lang="he">ברית אמריקאית</span><span data-lang="en">US Alliance</span></span>
       </div>
       <div class="party-links">
-        <a href="https://www.beytenu.org.il/" target="_blank" rel="noopener" class="party-link">🔗 אתר רשמי</a>
-        <a href="https://en.wikipedia.org/wiki/Yisrael_Beiteinu" target="_blank" rel="noopener" class="party-link">📖 ויקיפדיה</a>
+        <a href="https://mamlachti.org.il/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">אתר רשמי</span><span data-lang="en">Official Site</span></a>
+        <a href="https://en.wikipedia.org/wiki/National_Unity_(Israel)" target="_blank" rel="noopener" class="party-link">📖 Wikipedia</a>
       </div>
     </div>
 
     <div class="party-card center-bloc">
       <div class="party-header">
         <div>
-          <div class="party-name">מפלגת המילואים</div>
-          <div class="party-leader">מנהיג: יועז הנדל</div>
+          <div class="party-name">
+            <span data-lang="he">ישראל ביתנו</span>
+            <span data-lang="en">Yisrael Beiteinu</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: אביגדור ליברמן</span>
+            <span data-lang="en">Leader: Avigdor Lieberman</span>
+          </div>
         </div>
-        <span class="party-tag">מרכז-ימין — לוחמים</span>
+        <span class="party-tag">
+          <span data-lang="he">ימין חילוני</span>
+          <span data-lang="en">Secular Right</span>
+        </span>
       </div>
       <p class="party-desc">
-        מפלגה חדשה המייצגת לוחמי מילואים ומשפחותיהם. מצע "משרתים–משלמים": שוויון בנטל,
-        טיפול ב-PTSD, הכרה בקורבנות ומאבק בסחטנות סקטוריאלית של מפלגות שאינן תורמות.
+        <span data-lang="he">ימין חילוני קשוח: ליברליזם כלכלי, אנטי-קלריקליזם חזק, גיוס חובה מלא וצמצום הטבות לחרדים ולמי שאינו משרת. מדיניות "משרתים–משלמים" כציר מרכזי. קהל בולט: עולי חבר המדינות וימין חילוני.</span>
+        <span data-lang="en">Hard secular right: economic liberalism, strong anti-clericalism, mandatory conscription, and cutting benefits for those who don't serve. Core platform: "Those who serve get benefits." Key demographic: FSU immigrants and secular right-wingers.</span>
       </p>
       <div class="party-pillars">
-        <span class="pillar">שוויון בנטל</span>
-        <span class="pillar">מילואים</span>
+        <span class="pillar"><span data-lang="he">גיוס חובה</span><span data-lang="en">Mandatory Draft</span></span>
+        <span class="pillar"><span data-lang="he">אנטי-חרדי</span><span data-lang="en">Anti-Clerical</span></span>
+        <span class="pillar"><span data-lang="he">ליברליזם כלכלי</span><span data-lang="en">Economic Liberalism</span></span>
+        <span class="pillar"><span data-lang="he">עולים</span><span data-lang="en">FSU Immigrants</span></span>
+      </div>
+      <div class="party-links">
+        <a href="https://www.beytenu.org.il/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">אתר רשמי</span><span data-lang="en">Official Site</span></a>
+        <a href="https://en.wikipedia.org/wiki/Yisrael_Beiteinu" target="_blank" rel="noopener" class="party-link">📖 Wikipedia</a>
+      </div>
+    </div>
+
+    <div class="party-card center-bloc">
+      <div class="party-header">
+        <div>
+          <div class="party-name">
+            <span data-lang="he">מפלגת המילואים</span>
+            <span data-lang="en">Reservists Party</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: יועז הנדל</span>
+            <span data-lang="en">Leader: Yoaz Hendel</span>
+          </div>
+        </div>
+        <span class="party-tag">
+          <span data-lang="he">מרכז-ימין — לוחמים</span>
+          <span data-lang="en">Center-Right / Reservists</span>
+        </span>
+      </div>
+      <p class="party-desc">
+        <span data-lang="he">מפלגה חדשה המייצגת לוחמי מילואים ומשפחותיהם. מצע "משרתים–משלמים": שוויון בנטל, טיפול ב-PTSD, הכרה בקורבנות ומאבק בסחטנות סקטוריאלית של מפלגות שאינן תורמות.</span>
+        <span data-lang="en">A new party representing reservist fighters and their families. Platform: "Those who serve deserve more." Equal burden-sharing, PTSD support, recognition of casualties, and opposition to sectoral extortion by non-contributing parties.</span>
+      </p>
+      <div class="party-pillars">
+        <span class="pillar"><span data-lang="he">שוויון בנטל</span><span data-lang="en">Equal Burden</span></span>
+        <span class="pillar"><span data-lang="he">מילואים</span><span data-lang="en">Reservists</span></span>
         <span class="pillar">PTSD</span>
-        <span class="pillar">אנטי-פופוליזם</span>
+        <span class="pillar"><span data-lang="he">אנטי-פופוליזם</span><span data-lang="en">Anti-Populism</span></span>
       </div>
       <div class="party-links">
-        <a href="https://miluimparty.co.il/" target="_blank" rel="noopener" class="party-link">🔗 אתר רשמי</a>
+        <a href="https://miluimparty.co.il/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">אתר רשמי</span><span data-lang="en">Official Site</span></a>
       </div>
     </div>
 
-    <!-- ===== שמאל ===== -->
-    <div class="bloc-title">🟢 גוש השמאל הציוני</div>
+    <!-- ===== Left Bloc ===== -->
+    <div class="bloc-title">
+      <span data-lang="he">🟢 גוש השמאל הציוני</span>
+      <span data-lang="en">🟢 Zionist Left Bloc</span>
+    </div>
 
     <div class="party-card left-bloc">
       <div class="party-header">
         <div>
-          <div class="party-name">הדמוקרטים (עבודה + מרצ)</div>
-          <div class="party-leader">מנהיג: יאיר גולן</div>
+          <div class="party-name">
+            <span data-lang="he">הדמוקרטים (עבודה + מרצ)</span>
+            <span data-lang="en">The Democrats (Labor + Meretz)</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: יאיר גולן</span>
+            <span data-lang="en">Leader: Yair Golan</span>
+          </div>
         </div>
-        <span class="party-tag">שמאל ציוני</span>
+        <span class="party-tag">
+          <span data-lang="he">שמאל ציוני</span>
+          <span data-lang="en">Zionist Left</span>
+        </span>
       </div>
       <p class="party-desc">
-        מיזוג עבודה ומרצ ב-2024. מקדמת סוציאל-דמוקרטיה, זכויות עובדים, בריאות, חינוך ציבורי,
-        שוויון להט״ב, עצמאות שיפוטית ותמיכה מפורשת בפתרון שתי מדינות.
+        <span data-lang="he">מיזוג עבודה ומרצ ב-2024. מקדמת סוציאל-דמוקרטיה, זכויות עובדים, בריאות, חינוך ציבורי, שוויון להט״ב, עצמאות שיפוטית ותמיכה מפורשת בפתרון שתי מדינות.</span>
+        <span data-lang="en">The 2024 merger of Labor and Meretz. Promotes social democracy, workers' rights, public healthcare, universal education, LGBTQ+ equality, judicial independence, and explicit support for a two-state solution.</span>
       </p>
       <div class="party-pillars">
-        <span class="pillar">סוציאל-דמוקרטיה</span>
-        <span class="pillar">שתי מדינות</span>
-        <span class="pillar">זכויות להט״ב</span>
-        <span class="pillar">עצמאות שיפוטית</span>
+        <span class="pillar"><span data-lang="he">סוציאל-דמוקרטיה</span><span data-lang="en">Social Democracy</span></span>
+        <span class="pillar"><span data-lang="he">שתי מדינות</span><span data-lang="en">Two-State Solution</span></span>
+        <span class="pillar"><span data-lang="he">זכויות להט״ב</span><span data-lang="en">LGBTQ+ Rights</span></span>
+        <span class="pillar"><span data-lang="he">עצמאות שיפוטית</span><span data-lang="en">Judicial Independence</span></span>
       </div>
       <div class="party-links">
-        <a href="https://democrats.org.il/" target="_blank" rel="noopener" class="party-link">🔗 אתר רשמי</a>
-        <a href="https://en.wikipedia.org/wiki/The_Democrats_(Israel)" target="_blank" rel="noopener" class="party-link">📖 ויקיפדיה</a>
+        <a href="https://democrats.org.il/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">אתר רשמי</span><span data-lang="en">Official Site</span></a>
+        <a href="https://en.wikipedia.org/wiki/The_Democrats_(Israel)" target="_blank" rel="noopener" class="party-link">📖 Wikipedia</a>
       </div>
     </div>
 
-    <!-- ===== ערבי ===== -->
-    <div class="bloc-title">🟠 מפלגות ערביות</div>
-
-    <div class="party-card arab-bloc">
-      <div class="party-header">
-        <div>
-          <div class="party-name">חד״ש–תע״ל</div>
-          <div class="party-leader">מנהיג: יוסף ג׳בארין</div>
-        </div>
-        <span class="party-tag">שמאל ערבי-יהודי</span>
-      </div>
-      <p class="party-desc">
-        חיבור של חד״ש (קומוניסטי-סוציאליסטי יהודי-ערבי) ותע״ל. דורש שוויון כלכלי, סיום
-        הכיבוש, הקמת מדינה פלסטינית ושוויון זכויות מלא לערבים אזרחי ישראל.
-      </p>
-      <div class="party-pillars">
-        <span class="pillar">שוויון אזרחי</span>
-        <span class="pillar">סיום כיבוש</span>
-        <span class="pillar">שמאל רדיקלי</span>
-        <span class="pillar">שיתוף פעולה יהודי-ערבי</span>
-      </div>
-      <div class="party-links">
-        <a href="https://hadash.org.il/" target="_blank" rel="noopener" class="party-link">🔗 אתר רשמי</a>
-        <a href="https://en.wikipedia.org/wiki/Hadash" target="_blank" rel="noopener" class="party-link">📖 ויקיפדיה</a>
-      </div>
+    <!-- ===== Arab Parties ===== -->
+    <div class="bloc-title">
+      <span data-lang="he">🟠 מפלגות ערביות</span>
+      <span data-lang="en">🟠 Arab Parties</span>
     </div>
 
     <div class="party-card arab-bloc">
       <div class="party-header">
         <div>
-          <div class="party-name">רע״מ</div>
-          <div class="party-leader">מנהיג: מנסור עבאס</div>
+          <div class="party-name">
+            <span data-lang="he">חד״ש–תע״ל</span>
+            <span data-lang="en">Hadash–Ta'al</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: יוסף ג׳בארין</span>
+            <span data-lang="en">Leader: Yousef Jabareen</span>
+          </div>
         </div>
-        <span class="party-tag">ערבי-אסלאמי פרגמטי</span>
+        <span class="party-tag">
+          <span data-lang="he">שמאל ערבי-יהודי</span>
+          <span data-lang="en">Arab-Jewish Left</span>
+        </span>
       </div>
       <p class="party-desc">
-        מפלגה אסלאמית שמרנית-חברתית עם קו פרגמטי ייחודי: נכונות לשבת בכל קואליציה שתביא
-        תקציבים לחברה הערבית. עבאס מקבל את ישראל כמדינה יהודית-דמוקרטית ומתמקד בתשתיות,
-        מאבק בפשיעה ושיפור חינוך ודיור במגזר הערבי.
+        <span data-lang="he">חיבור של חד״ש (קומוניסטי-סוציאליסטי יהודי-ערבי) ותע״ל. דורש שוויון כלכלי, סיום הכיבוש, הקמת מדינה פלסטינית ושוויון זכויות מלא לערבים אזרחי ישראל.</span>
+        <span data-lang="en">A joint list of Hadash (Arab-Jewish communist-socialist) and Ta'al. Calls for economic equality, ending the occupation, establishing a Palestinian state, and full civil rights for Arab citizens of Israel.</span>
       </p>
       <div class="party-pillars">
-        <span class="pillar">פרגמטיות</span>
-        <span class="pillar">תשתיות ערביות</span>
-        <span class="pillar">מאבק בפשיעה</span>
-        <span class="pillar">אסלאם מסורתי</span>
+        <span class="pillar"><span data-lang="he">שוויון אזרחי</span><span data-lang="en">Civil Equality</span></span>
+        <span class="pillar"><span data-lang="he">סיום כיבוש</span><span data-lang="en">End Occupation</span></span>
+        <span class="pillar"><span data-lang="he">שמאל רדיקלי</span><span data-lang="en">Radical Left</span></span>
+        <span class="pillar"><span data-lang="he">שיתוף פעולה יהודי-ערבי</span><span data-lang="en">Arab-Jewish Cooperation</span></span>
       </div>
       <div class="party-links">
-        <a href="https://raam-party.com/" target="_blank" rel="noopener" class="party-link">🔗 אתר רשמי</a>
-        <a href="https://en.wikipedia.org/wiki/Ra%27am" target="_blank" rel="noopener" class="party-link">📖 ויקיפדיה</a>
+        <a href="https://hadash.org.il/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">אתר רשמי</span><span data-lang="en">Official Site</span></a>
+        <a href="https://en.wikipedia.org/wiki/Hadash" target="_blank" rel="noopener" class="party-link">📖 Wikipedia</a>
+      </div>
+    </div>
+
+    <div class="party-card arab-bloc">
+      <div class="party-header">
+        <div>
+          <div class="party-name">
+            <span data-lang="he">רע״מ</span>
+            <span data-lang="en">Ra'am (UAL)</span>
+          </div>
+          <div class="party-leader">
+            <span data-lang="he">מנהיג: מנסור עבאס</span>
+            <span data-lang="en">Leader: Mansour Abbas</span>
+          </div>
+        </div>
+        <span class="party-tag">
+          <span data-lang="he">ערבי-אסלאמי פרגמטי</span>
+          <span data-lang="en">Pragmatic Arab-Islamist</span>
+        </span>
+      </div>
+      <p class="party-desc">
+        <span data-lang="he">מפלגה אסלאמית שמרנית-חברתית עם קו פרגמטי ייחודי: נכונות לשבת בכל קואליציה שתביא תקציבים לחברה הערבית. עבאס מקבל את ישראל כמדינה יהודית-דמוקרטית ומתמקד בתשתיות, מאבק בפשיעה ושיפור חינוך ודיור במגזר הערבי.</span>
+        <span data-lang="en">A conservative Islamic-social party with a unique pragmatic approach: willing to join any coalition that delivers budgets to Arab communities. Abbas accepts Israel as a Jewish-democratic state and focuses on infrastructure, fighting crime, and improving education and housing in the Arab sector.</span>
+      </p>
+      <div class="party-pillars">
+        <span class="pillar"><span data-lang="he">פרגמטיות</span><span data-lang="en">Pragmatism</span></span>
+        <span class="pillar"><span data-lang="he">תשתיות ערביות</span><span data-lang="en">Arab Infrastructure</span></span>
+        <span class="pillar"><span data-lang="he">מאבק בפשיעה</span><span data-lang="en">Fighting Crime</span></span>
+        <span class="pillar"><span data-lang="he">אסלאם מסורתי</span><span data-lang="en">Traditional Islam</span></span>
+      </div>
+      <div class="party-links">
+        <a href="https://raam-party.com/" target="_blank" rel="noopener" class="party-link">🔗 <span data-lang="he">אתר רשמי</span><span data-lang="en">Official Site</span></a>
+        <a href="https://en.wikipedia.org/wiki/Ra%27am" target="_blank" rel="noopener" class="party-link">📖 Wikipedia</a>
       </div>
     </div>
 
     <div style="text-align:center; margin-top: 48px;">
-      <a href="index.html" class="btn btn-primary">← חזור למכונת ההצבעה</a>
+      <a href="index.html" class="btn btn-primary">
+        <span data-lang="he">← חזור למכונת ההצבעה</span>
+        <span data-lang="en">← Back to Voting Machine</span>
+      </a>
     </div>
 
   </div>
@@ -370,18 +538,291 @@
 
 <footer class="site-footer">
   <div class="container footer-inner">
-    <div class="footer-logo">🗳️ המצפן | בחירות 2026</div>
+    <div class="footer-logo">
+      <svg width="18" height="18" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align:middle;margin-left:6px;color:white">
+        <circle cx="20" cy="20" r="17" stroke="currentColor" stroke-width="2" fill="none"/>
+        <line x1="20" y1="3"  x2="20" y2="8"  stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="37" y1="20" x2="32" y2="20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        <line x1="20" y1="37" x2="20" y2="32" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        <line x1="3"  y1="20" x2="8"  y2="20" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+        <path d="M20 5.5 L22.2 16.5 L17.8 16.5 Z" fill="currentColor"/>
+        <rect x="17.8" y="16.5" width="4.4" height="6.5" fill="currentColor"/>
+        <rect x="17.8" y="23"   width="4.4" height="1.5" fill="currentColor" opacity="0.5"/>
+        <rect x="18.2" y="24.5" width="3.6" height="4"   rx="1.2" fill="currentColor" opacity="0.5"/>
+      </svg>
+      <span data-lang="he">המצפן | בחירות 2026</span>
+      <span data-lang="en">The Compass | Israel Elections 2026</span>
+    </div>
     <nav class="footer-nav">
-      <a href="index.html">דף הבית</a>
-      <a href="parties.html">המפלגות</a>
-      <a href="takanon.html">תקנון ופרטיות</a>
+      <a href="index.html"><span data-lang="he">דף הבית</span><span data-lang="en">Home</span></a>
+      <a href="parties.html"><span data-lang="he">המפלגות</span><span data-lang="en">Parties</span></a>
+      <a href="takanon.html"><span data-lang="he">תקנון ופרטיות</span><span data-lang="en">Terms &amp; Privacy</span></a>
     </nav>
     <p class="footer-copy">
-      כלי זה מיועד למטרות מידע ציבורי בלבד. אינו כלי תעמולה ואינו מזוהה עם מפלגה כלשהי.<br />
-      © 2026 hamatzpen.co.il — כל הזכויות שמורות
+      <span data-lang="he">כלי זה מיועד למטרות מידע ציבורי בלבד. אינו כלי תעמולה ואינו מזוהה עם מפלגה כלשהי.</span>
+      <span data-lang="en">For public information purposes only. Not affiliated with any political party.</span>
+      <br />© 2026 hamatzpen.life
     </p>
+    <a href="https://www.linkedin.com/in/nivchen/" target="_blank" rel="noopener" class="linkedin-link">
+      <svg class="linkedin-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>
+      <span data-lang="he">נוצר על ידי Niv Chen</span>
+      <span data-lang="en">Created by Niv Chen</span>
+    </a>
   </div>
 </footer>
 
+<script>
+// ─────────────────────────────────────────────────────────────
+//  translations.js — shared across all pages
+// ─────────────────────────────────────────────────────────────
+
+// ── Language persistence ──────────────────────────────────────
+function getLang() {
+  return localStorage.getItem('matzpen_lang') || 'he';
+}
+function setLang(lang) {
+  localStorage.setItem('matzpen_lang', lang);
+  document.documentElement.setAttribute('lang', lang);
+  // CSS-based show/hide: html.lang-he hides [data-lang="en"] and vice versa
+  document.documentElement.className = 'lang-' + lang;
+  document.querySelectorAll('.lang-btn').forEach(function(btn) {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  window.dispatchEvent(new CustomEvent('langchange', { detail: lang }));
+}
+function initLang() {
+  setLang(getLang());
+}
+
+// ── Quiz data ─────────────────────────────────────────────────
+var QUIZ_DATA = {
+
+  he: [
+    {
+      id:1, topic:'⚖️ שוויון בנטל וגיוס חרדים',
+      text:'מה עמדתך לגבי גיוס בני ישיבות לצבא?',
+      answers:[
+        { text:'גיוס חובה מלא לכולם — כמו כל אזרח',                                      scores:{beytenu:5,miluim:5,together:4,yashar:4,gantz:3,democrats:3} },
+        { text:'שירות משמעותי — צבאי או אזרחי — עם מכסה מצומצמת לעילויים',               scores:{together:5,yashar:4,gantz:4,miluim:3} },
+        { text:'הסכמה מדעת עם הקהילה החרדית; פטור חלקי עם תמריצים',                      scores:{likud:4,tzionit:3} },
+        { text:'פטור מלא לבני ישיבות — לימוד תורה הוא גם הגנה על המדינה',                scores:{shas:5,yahadut:5,otzma:2} },
+      ]
+    },
+    {
+      id:2, topic:'💰 מדיניות כלכלית',
+      text:'מה הגישה הנכונה לכלכלת ישראל?',
+      answers:[
+        { text:'שוק חופשי: הפחתת מסים, צמצום ביורוקרטיה, עידוד השקעות פרטיות',           scores:{likud:5,beytenu:4,tzionit:4,together:3} },
+        { text:'מרכז: שוק חופשי עם רשת ביטחון חברתית חזקה ומאבק בריכוזיות',              scores:{together:5,yashar:4,gantz:4,miluim:3} },
+        { text:'סוציאל-דמוקרטיה: חיזוק שירותים ציבוריים, הגנת עובדים, צמצום פערים',     scores:{democrats:5,hadash:4,shas:3,raam:3} },
+        { text:'מאבק בטייקונים ובריכוזיות — הורדת יוקר מחיה כעדיפות ראשונה',            scores:{beytenu:4,together:3,miluim:3,yashar:2} },
+      ]
+    },
+    {
+      id:3, topic:'🔒 ביטחון ויחסי חוץ',
+      text:'מהי גישתך לסכסוך עם החמאס ולמדיניות החוץ?',
+      answers:[
+        { text:'לחץ צבאי מקסימלי ללא פשרות, עמידה קשוחה מול כל איום',                   scores:{otzma:5,tzionit:5,likud:3} },
+        { text:'כוח צבאי חזק בשילוב שמירה על הברית עם ארה"ב ואירופה',                    scores:{likud:4,gantz:5,together:4,yashar:4,beytenu:4} },
+        { text:'פרגמטיות: שמירה על הביטחון, אך פתיחות לדיאלוג מדיני בתנאים מתאימים',    scores:{together:5,yashar:4,gantz:3,democrats:3} },
+        { text:'פתרון דיפלומטי בעדיפות; הפחתת כוח צבאי ודגש על זכויות אדם',             scores:{democrats:5,hadash:5,raam:3} },
+      ]
+    },
+    {
+      id:4, topic:'🕍 דת ומדינה',
+      text:'כיצד צריכה המדינה להתייחס לנושאי דת ומדינה?',
+      answers:[
+        { text:'הגברת השפעת ההלכה — ישראל כמדינה יהודית בהשראת תורה',                   scores:{yahadut:5,shas:5,otzma:4,tzionit:3} },
+        { text:'שמירה על המצב הקיים — כבוד מסורת לצד חופש הפרט',                         scores:{likud:5,tzionit:3} },
+        { text:'הפרדת דת ומדינה: נישואין אזרחיים, תחבורה בשבת, ביטול מונופול הרבנות',   scores:{beytenu:5,together:5,yashar:4,gantz:3} },
+        { text:'שוויון דתי מלא לכלל הזרמים — ללא עדיפות לאורתודוקסים',                  scores:{democrats:5,hadash:4,together:3} },
+      ]
+    },
+    {
+      id:5, topic:'🗺️ הסכסוך הפלסטיני',
+      text:'מה העמדה הנכונה לגבי הסכסוך הישראלי-פלסטיני?',
+      answers:[
+        { text:'סיפוח יהודה ושומרון — אין מדינה פלסטינית בשום תצורה',                   scores:{otzma:5,tzionit:5,likud:2} },
+        { text:'שמירת המצב הקיים; לא ויתורים ולא סיפוח פורמלי',                          scores:{likud:5,beytenu:3,gantz:2} },
+        { text:'פתרון מדיני עתידי בתנאי ביטחון — שתי מדינות כשיהיה שותף אמין',          scores:{together:5,yashar:4,gantz:4,beytenu:3,miluim:3} },
+        { text:'שתי מדינות עכשיו — סיום הכיבוש הוא התנאי לביטחון אמיתי',                scores:{democrats:5,hadash:5,raam:4} },
+      ]
+    },
+    {
+      id:6, topic:'📜 ממשל, שחיתות וחוקה',
+      text:'מה עמדתך בנושא מערכת המשפט, שחיתות שלטונית וחוקה?',
+      answers:[
+        { text:'הרפורמה המשפטית נחוצה — בית המשפט חרג מסמכותו, יש לאזן כוחות',         scores:{likud:5,tzionit:4,otzma:4,shas:3} },
+        { text:'מתנגד לרפורמה; שמירה על עצמאות שיפוטית עם שינויים מינוריים',            scores:{gantz:5,yashar:4,miluim:3} },
+        { text:'דרוש חוקה כתובה, הגבלת כהונת ראש ממשלה ושקיפות מלאה',                  scores:{together:5,yashar:4,beytenu:5,miluim:4} },
+        { text:'שינוי מהפכני: ועדת חקירה ל-7.10, ביטול שחיתות מוסדית',                  scores:{democrats:5,hadash:4,together:3} },
+      ]
+    },
+    {
+      id:7, topic:'🏫 חינוך ולימודי ליבה',
+      text:'מה עמדתך לגבי מערכת החינוך ולימודי ליבה?',
+      answers:[
+        { text:'תמיכה מלאה בחינוך חרדי עצמאי ללא התערבות המדינה בתוכן',                 scores:{yahadut:5,shas:5} },
+        { text:'כבוד לחינוך הדתי לצד לימודי ליבה מינימליים (מתמטיקה ואנגלית)',          scores:{likud:4,tzionit:3} },
+        { text:'לימודי ליבה חובה לכלל המגזרים: מדעים, אנגלית, אזרחות',                  scores:{together:5,beytenu:5,yashar:4,gantz:3,miluim:4} },
+        { text:'חינוך ממלכתי אחיד, חינם מגיל 3, ביטול מענקים לתוכניות ללא ליבה',       scores:{democrats:5,hadash:4} },
+      ]
+    },
+    {
+      id:8, topic:'🌈 זכויות אדם ושוויון חברתי',
+      text:'מה עמדתך בנושא שוויון זכויות לכלל קבוצות האוכלוסייה?',
+      answers:[
+        { text:'ישראל היא מדינת הלאום היהודית — עדיפות לזכויות הרוב היהודי',            scores:{otzma:5,tzionit:4,likud:3} },
+        { text:'שוויון אזרחי לכולם עם שמירת האופי היהודי-דמוקרטי של המדינה',           scores:{together:5,gantz:4,yashar:4,beytenu:3,miluim:3} },
+        { text:'שוויון מלא לכל האזרחים — ערבים, נשים, להט"ב, עולים',                   scores:{democrats:5,hadash:5,raam:3} },
+        { text:'שיפור ממוקד בתנאי חיים של האזרחים הערבים ורמת שירותי הרשות',           scores:{raam:5,hadash:3,democrats:2} },
+      ]
+    },
+    {
+      id:9, topic:'🏥 מדיניות חברתית ובריאות',
+      text:'מה עדיפות המדיניות החברתית בעיניך?',
+      answers:[
+        { text:'הרחבת קצבאות ילדים וסיוע למשפחות עם ילדים רבים',                         scores:{shas:5,yahadut:5,likud:2} },
+        { text:'השקעה בבריאות ציבורית: הקצרת תורים, חיזוק קופות חולים, רפואת שיניים',  scores:{democrats:5,hadash:4,gantz:3,together:3,raam:4} },
+        { text:'צמצום יוקר מחיה: דיור, מזון ואנרגיה — דרך שוק תחרותי',                  scores:{beytenu:5,together:4,likud:3,yashar:3} },
+        { text:'תשתיות ושיקום לאזורי פריפריה ולחברה הערבית בפרט',                       scores:{raam:5,democrats:3,shas:3,miluim:2} },
+      ]
+    },
+    {
+      id:10, topic:'🔍 אחריות על 7 באוקטובר',
+      text:'מה צריך לעשות לגבי כשלי 7 באוקטובר?',
+      answers:[
+        { text:'ועדת חקירה ממלכתית מיידית עם מסקנות מחייבות — כולל אחריות ראש הממשלה', scores:{together:5,yashar:5,democrats:5,hadash:4,beytenu:4,miluim:4,gantz:4} },
+        { text:'חקירה פנים-צבאית עצמאית ושינויי מבנה בצבא ובשב"כ',                     scores:{gantz:5,yashar:3,miluim:3} },
+        { text:'ממתין לסיום המלחמה — לא הזמן הנכון לחקור תוך כדי לחימה',              scores:{likud:5,shas:3,yahadut:2} },
+        { text:'ביקורת על כשלי המודיעין, אך הדגש על הניצחון הצבאי',                    scores:{tzionit:4,otzma:3,likud:3} },
+      ]
+    },
+  ],
+
+  en: [
+    {
+      id:1, topic:'⚖️ Equal Burden & Haredi Draft',
+      text:'What is your position on drafting Yeshiva students into the military?',
+      answers:[
+        { text:'Full mandatory service for everyone — just like any other citizen',          scores:{beytenu:5,miluim:5,together:4,yashar:4,gantz:3,democrats:3} },
+        { text:'Meaningful service — military or civilian — with a small quota for top scholars', scores:{together:5,yashar:4,gantz:4,miluim:3} },
+        { text:'Gradual integration negotiated with the Haredi community; partial exemptions with incentives', scores:{likud:4,tzionit:3} },
+        { text:'Full exemption for Yeshiva students — Torah study is also defending the state', scores:{shas:5,yahadut:5,otzma:2} },
+      ]
+    },
+    {
+      id:2, topic:'💰 Economic Policy',
+      text:'What is the right economic approach for Israel?',
+      answers:[
+        { text:'Free market: tax cuts, deregulation, encouraging private investment',        scores:{likud:5,beytenu:4,tzionit:4,together:3} },
+        { text:'Center: free market with a strong social safety net and anti-monopoly policies', scores:{together:5,yashar:4,gantz:4,miluim:3} },
+        { text:'Social democracy: stronger public services, worker protections, reducing inequality', scores:{democrats:5,hadash:4,shas:3,raam:3} },
+        { text:'Fighting oligarchs and monopolies above all — lowering the cost of living',  scores:{beytenu:4,together:3,miluim:3,yashar:2} },
+      ]
+    },
+    {
+      id:3, topic:'🔒 Security & Foreign Policy',
+      text:'What is your approach to the conflict with Hamas and Israel\'s foreign policy?',
+      answers:[
+        { text:'Maximum military pressure, no compromises, hardline against all threats',    scores:{otzma:5,tzionit:5,likud:3} },
+        { text:'Strong military force combined with maintaining the US and European alliance', scores:{likud:4,gantz:5,together:4,yashar:4,beytenu:4} },
+        { text:'Pragmatic: security first, but open to political dialogue under the right conditions', scores:{together:5,yashar:4,gantz:3,democrats:3} },
+        { text:'Diplomatic solution first; reduce military force and prioritize human rights', scores:{democrats:5,hadash:5,raam:3} },
+      ]
+    },
+    {
+      id:4, topic:'🕍 Religion & State',
+      text:'How should the state handle religion and state affairs?',
+      answers:[
+        { text:'Strengthen Halacha\'s influence — Israel as a Jewish state inspired by Torah', scores:{yahadut:5,shas:5,otzma:4,tzionit:3} },
+        { text:'Keep the status quo — respect for tradition alongside personal freedom',      scores:{likud:5,tzionit:3} },
+        { text:'Separation of religion and state: civil marriage, Shabbat transport, end Rabbinate monopoly', scores:{beytenu:5,together:5,yashar:4,gantz:3} },
+        { text:'Full religious equality for all streams — without Orthodox preference',      scores:{democrats:5,hadash:4,together:3} },
+      ]
+    },
+    {
+      id:5, topic:'🗺️ The Palestinian Conflict',
+      text:'What is your position on the Israeli-Palestinian conflict?',
+      answers:[
+        { text:'Annex Judea and Samaria — no Palestinian state in any form',                 scores:{otzma:5,tzionit:5,likud:2} },
+        { text:'Maintain the status quo — no concessions, no formal annexation',             scores:{likud:5,beytenu:3,gantz:2} },
+        { text:'A future political solution under security conditions — two states when there is a reliable partner', scores:{together:5,yashar:4,gantz:4,beytenu:3,miluim:3} },
+        { text:'Two states now — ending the occupation is the prerequisite for real security', scores:{democrats:5,hadash:5,raam:4} },
+      ]
+    },
+    {
+      id:6, topic:'📜 Governance, Corruption & Constitution',
+      text:'What is your position on the judiciary, political corruption, and a constitution?',
+      answers:[
+        { text:'The judicial reform is necessary — the court overstepped its authority',     scores:{likud:5,tzionit:4,otzma:4,shas:3} },
+        { text:'Against the reform; maintain judicial independence with minor adjustments',  scores:{gantz:5,yashar:4,miluim:3} },
+        { text:'A written constitution, term limits for PM, and full transparency',          scores:{together:5,yashar:4,beytenu:5,miluim:4} },
+        { text:'Revolutionary change: Oct 7 inquiry commission, end institutional corruption', scores:{democrats:5,hadash:4,together:3} },
+      ]
+    },
+    {
+      id:7, topic:'🏫 Education & Core Curriculum',
+      text:'What is your position on the education system and core curriculum?',
+      answers:[
+        { text:'Full support for independent Haredi education without state interference in content', scores:{yahadut:5,shas:5} },
+        { text:'Respect for religious education alongside minimal core subjects (math and English)', scores:{likud:4,tzionit:3} },
+        { text:'Mandatory core curriculum for all sectors: sciences, English, civics',       scores:{together:5,beytenu:5,yashar:4,gantz:3,miluim:4} },
+        { text:'Unified public education, free from age 3, no funding for non-core programs', scores:{democrats:5,hadash:4} },
+      ]
+    },
+    {
+      id:8, topic:'🌈 Human Rights & Social Equality',
+      text:'What is your position on equal rights for all groups in Israeli society?',
+      answers:[
+        { text:'Israel is the Jewish nation-state — priority to the rights and needs of the Jewish majority', scores:{otzma:5,tzionit:4,likud:3} },
+        { text:'Civil equality for all while preserving the Jewish-democratic character of the state', scores:{together:5,gantz:4,yashar:4,beytenu:3,miluim:3} },
+        { text:'Full equality for all citizens — Arabs, women, LGBTQ+, immigrants',          scores:{democrats:5,hadash:5,raam:3} },
+        { text:'Targeted improvement in living conditions for Arab citizens and municipal services', scores:{raam:5,hadash:3,democrats:2} },
+      ]
+    },
+    {
+      id:9, topic:'🏥 Social Policy & Healthcare',
+      text:'What social policy priority matters most to you?',
+      answers:[
+        { text:'Expand child allowances and support for large families',                     scores:{shas:5,yahadut:5,likud:2} },
+        { text:'Invest in public health: shorter waiting times, stronger HMOs, dental care coverage', scores:{democrats:5,hadash:4,gantz:3,together:3,raam:4} },
+        { text:'Reduce cost of living: housing, food, energy — through competitive markets', scores:{beytenu:5,together:4,likud:3,yashar:3} },
+        { text:'Infrastructure and rehabilitation for peripheral areas and Arab communities', scores:{raam:5,democrats:3,shas:3,miluim:2} },
+      ]
+    },
+    {
+      id:10, topic:'🔍 Accountability for October 7th',
+      text:'What should be done about the failures of October 7th?',
+      answers:[
+        { text:'An immediate state commission of inquiry with binding conclusions — including PM accountability', scores:{together:5,yashar:5,democrats:5,hadash:4,beytenu:4,miluim:4,gantz:4} },
+        { text:'Independent internal military investigation and structural changes in the IDF and Shin Bet', scores:{gantz:5,yashar:3,miluim:3} },
+        { text:'Wait for the war to end — not the right time to investigate during active combat', scores:{likud:5,shas:3,yahadut:2} },
+        { text:'Criticize intelligence failures, but keep the focus on military victory, not politics', scores:{tzionit:4,otzma:3,likud:3} },
+      ]
+    },
+  ]
+};
+
+// ── Party name display ────────────────────────────────────────
+var PARTIES_DISPLAY = {
+  likud:    { he:'הליכוד',               en:'Likud',             leader:'Benjamin Netanyahu',  bloc_he:'ימין',        bloc_en:'Right',          url:'https://www.likud.org.il/' },
+  shas:     { he:'ש״ס',                  en:'Shas',              leader:'Aryeh Deri',           bloc_he:'חרדי',        bloc_en:'Haredi',          url:'https://www.shas.org.il/' },
+  yahadut:  { he:'יהדות התורה',          en:'United Torah Judaism', leader:'Yitzchak Goldknopf', bloc_he:'חרדי',      bloc_en:'Haredi',          url:'https://yahaduttorah.org.il/' },
+  tzionit:  { he:'הציונות הדתית',        en:'Religious Zionism',  leader:'Bezalel Smotrich',    bloc_he:'ימין דתי',    bloc_en:'Religious Right', url:'https://zionutdatit.org.il/' },
+  otzma:    { he:'עוצמה יהודית',         en:'Jewish Power',       leader:'Itamar Ben Gvir',     bloc_he:'ימין קיצוני', bloc_en:'Far Right',       url:'https://www.otzma.org.il/' },
+  together: { he:'ביחד (יש עתיד + בנט)', en:'Together (Lapid+Bennett)', leader:'Lapid & Bennett', bloc_he:'מרכז-ימין', bloc_en:'Center-Right',   url:'https://yeshatid.org.il/' },
+  yashar:   { he:'יש״ר',                 en:'Yashar',             leader:'Gadi Eisenkot',        bloc_he:'מרכז-ימין',   bloc_en:'Center-Right',   url:'https://www.jewishvirtuallibrary.org/yashar-with-eisenkot' },
+  gantz:    { he:'המחנה הממלכתי',        en:'National Unity',     leader:'Benny Gantz',          bloc_he:'מרכז',        bloc_en:'Center',          url:'https://mamlachti.org.il/' },
+  beytenu:  { he:'ישראל ביתנו',          en:'Yisrael Beiteinu',   leader:'Avigdor Lieberman',   bloc_he:'ימין חילוני', bloc_en:'Secular Right',  url:'https://www.beytenu.org.il/' },
+  democrats:{ he:'הדמוקרטים',            en:'The Democrats',      leader:'Yair Golan',           bloc_he:'שמאל',        bloc_en:'Left',            url:'https://democrats.org.il/' },
+  hadash:   { he:'חד״ש-תע״ל',           en:'Hadash-Ta\'al',      leader:'Yusuf Jabarin',        bloc_he:'שמאל ערבי',   bloc_en:'Arab Left',      url:'https://hadash.org.il/' },
+  raam:     { he:'רע״מ',                 en:'Ra\'am',             leader:'Mansour Abbas',        bloc_he:'ערבי',        bloc_en:'Arab',            url:'https://raam-party.com/' },
+  miluim:   { he:'מפלגת המילואים',       en:'Reservists Party',   leader:'Yoaz Hendel',          bloc_he:'מרכז-ימין',   bloc_en:'Center-Right',   url:'https://miluimparty.co.il/' },
+};
+</script>
+<script>initLang();</script>
 </body>
 </html>
