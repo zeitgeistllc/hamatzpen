@@ -14,8 +14,13 @@ async function redisPipeline(commands) {
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
-  const { topParty, scores } = req.body || {};
+  const { topParty, scores, _hp, _t, _n } = req.body || {};
   if (!topParty || typeof scores !== 'object') return res.status(400).json({ error: 'invalid' });
+
+  // ── Bot guards (silent accept — bot thinks it succeeded) ──
+  if (_hp && String(_hp).trim() !== '') return res.status(200).json({ ok: true });
+  if (typeof _t === 'number' && _t < 6000)  return res.status(200).json({ ok: true }); // too fast
+  if (typeof _n === 'number' && _n < 10)    return res.status(200).json({ ok: true }); // skipped questions
 
   const today = new Date().toISOString().slice(0, 10);
   const cmds = [

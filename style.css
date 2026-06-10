@@ -544,6 +544,21 @@ a:hover { text-decoration: underline; }
 .footer-copy { font-size: .78rem; line-height: 1.8; }
 
 /* ===========================
+   HONEYPOT (bot trap — never shown to humans)
+=========================== */
+.hp-wrap {
+  position: absolute;
+  left: -9999px;
+  top: -9999px;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  tab-index: -1;
+}
+
+/* ===========================
    LANGUAGE TOGGLE
 =========================== */
 .lang-toggle {

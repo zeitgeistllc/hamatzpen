@@ -90,6 +90,12 @@
   <div class="hero-deco" aria-hidden="true">✦ ✦ ✦</div>
 </section>
 
+<!-- ===== HONEYPOT (invisible to humans, bots fill it) ===== -->
+<div class="hp-wrap" aria-hidden="true">
+  <label for="hp_email">Email</label>
+  <input type="text" id="hp_email" name="hp_email" autocomplete="off" tabindex="-1" value="" />
+</div>
+
 <!-- ===== QUIZ ===== -->
 <section class="quiz-section" id="quiz-section" style="display:none;">
   <div class="container quiz-container">
@@ -491,8 +497,11 @@ function resetScores() {
 }
 
 // ── Quiz flow ──────────────────────────────────────────────
+var quizStartTime = 0;
+
 function startQuiz() {
   currentQ = 0;
+  quizStartTime = Date.now();
   resetScores();
   document.getElementById('quiz-section').style.display    = 'block';
   document.getElementById('results-section').style.display = 'none';
@@ -590,10 +599,18 @@ function computePcts() {
 
 function saveAnonymousResult(pcts, topPartyKey) {
   try {
+    var hp    = (document.getElementById('hp_email') || {}).value || '';
+    var elapsed = quizStartTime ? Date.now() - quizStartTime : 99999;
     fetch('/api/vote', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ topParty: topPartyKey, scores: pcts }),
+      body: JSON.stringify({
+        topParty: topPartyKey,
+        scores:   pcts,
+        _hp:      hp,
+        _t:       elapsed,
+        _n:       currentQ   // number of questions answered (should equal total)
+      }),
     }).catch(function() {});
   } catch(e) {}
 }

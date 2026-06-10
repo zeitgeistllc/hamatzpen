@@ -56,6 +56,10 @@ const server = http.createServer((req, res) => {
       try {
         const d = JSON.parse(body);
         if (!d.topParty || typeof d.scores !== 'object') return json(res, 400, { error: 'invalid' });
+        // ── Bot guards ──────────────────────────────────────────
+        if (d._hp && String(d._hp).trim() !== '') return json(res, 200, { ok: true }); // honeypot filled → silent accept
+        if (typeof d._t === 'number' && d._t < 6000)  return json(res, 200, { ok: true }); // too fast (<6s) → silent accept
+        if (typeof d._n === 'number' && d._n < 10)     return json(res, 200, { ok: true }); // didn't answer all Q → silent accept
         // Sanitise — store only what we need
         const vote = {
           ts:       new Date().toISOString(),
