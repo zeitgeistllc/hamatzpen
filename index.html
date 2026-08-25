@@ -112,23 +112,11 @@
       <h2 class="question-text" id="q-text"></h2>
       <p class="question-topic" id="q-topic"></p>
       <div class="answers-grid" id="answers-grid"></div>
-      <div class="importance-row" id="importance-row" style="display:none;">
-        <p class="importance-label" id="importance-label"></p>
-        <div class="importance-btns">
-          <button class="imp-btn" data-val="1" onclick="setImportance(1)"></button>
-          <button class="imp-btn imp-active" data-val="2" onclick="setImportance(2)"></button>
-          <button class="imp-btn" data-val="3" onclick="setImportance(3)"></button>
-        </div>
-      </div>
     </div>
     <div class="quiz-nav">
       <button class="btn btn-outline" id="btn-back" onclick="prevQuestion()" style="display:none;">
         <span data-lang="he">← חזור</span>
         <span data-lang="en">← Back</span>
-      </button>
-      <button class="btn btn-primary" id="btn-next" onclick="nextQuestion()" style="display:none;">
-        <span data-lang="he">הבא ←</span>
-        <span data-lang="en">Next ←</span>
       </button>
     </div>
   </div>
@@ -565,8 +553,7 @@ initLang();
 // ── State ──────────────────────────────────────────────────
 var currentQ       = 0;
 var currentLang    = getLang();
-var likertAnswers  = []; // [{answer:1-5, importance:1-3}]
-var currentImp     = 2;  // default importance per question
+var likertAnswers  = []; // [{answer:1-5}]
 
 window.addEventListener('langchange', function(e) {
   currentLang = e.detail;
@@ -579,20 +566,14 @@ window.addEventListener('langchange', function(e) {
 var quizStartTime = 0;
 
 var LIKERT_LABELS = {
-  he: ['מסכים בחלוטין','מסכים','ניטרלי','מתנגד','מתנגד בחלוטין'],
+  he: ['מסכים לחלוטין','מסכים','ניטרלי','מתנגד','מתנגד לחלוטין'],
   en: ['Strongly Agree','Agree','Neutral','Disagree','Strongly Disagree']
 };
 var LIKERT_COLORS = ['#16a34a','#4ade80','#6b7280','#f97316','#ef4444'];
-var IMP_LABELS = {
-  he: ['חשיבות נמוכה','חשיבות בינונית','חשיבות גבוהה'],
-  en: ['Low priority','Medium priority','High priority']
-};
-var IMP_WEIGHTS = [0.5, 1, 1.5];
 
 function startQuiz() {
   currentQ      = 0;
   likertAnswers = [];
-  currentImp    = 2;
   quizStartTime = Date.now();
   document.getElementById('quiz-section').style.display    = 'block';
   document.getElementById('results-section').style.display = 'none';
@@ -649,48 +630,19 @@ function renderQuestion() {
     grid.appendChild(btn);
   });
 
-  // Importance row
-  currentImp = (likertAnswers[currentQ] && likertAnswers[currentQ].importance) || 2;
-  renderImportance(lang);
-
-  document.getElementById('importance-row').style.display = 'flex';
   document.getElementById('btn-back').style.display = currentQ > 0 ? 'inline-flex' : 'none';
-  document.getElementById('btn-next').style.display = likertAnswers[currentQ] ? 'inline-flex' : 'none';
-}
-
-function renderImportance(lang) {
-  var isHe = (lang || currentLang) === 'he';
-  document.getElementById('importance-label').textContent = isHe ? 'כמה נושא זה חשוב לך?' : 'How important is this topic?';
-  var btns = document.querySelectorAll('.imp-btn');
-  btns.forEach(function(btn, i) {
-    btn.textContent = IMP_LABELS[isHe ? 'he' : 'en'][i];
-    btn.classList.toggle('imp-active', (i + 1) === currentImp);
-  });
-}
-
-function setImportance(val) {
-  currentImp = val;
-  if (likertAnswers[currentQ]) likertAnswers[currentQ].importance = val;
-  renderImportance();
 }
 
 function selectLikert(val) {
-  likertAnswers[currentQ] = { answer: val, importance: currentImp };
+  likertAnswers[currentQ] = { answer: val };
   document.querySelectorAll('.likert-btn').forEach(function(btn, i) {
-    var bVal = 5 - i;
-    btn.classList.toggle('likert-selected', bVal === val);
+    btn.classList.toggle('likert-selected', (5 - i) === val);
+    btn.disabled = true;
   });
-  document.getElementById('btn-next').style.display = 'inline-flex';
-}
-
-function nextQuestion() {
-  if (!likertAnswers[currentQ]) return;
-  currentQ++;
-  if (currentQ < QUIZ_LIKERT.length) {
-    renderQuestion();
-  } else {
-    showResults();
-  }
+  setTimeout(function() {
+    currentQ++;
+    if (currentQ < QUIZ_LIKERT.length) { renderQuestion(); } else { showResults(); }
+  }, 350);
 }
 
 function prevQuestion() {
@@ -704,13 +656,12 @@ function computeScoresLikert() {
   QUIZ_LIKERT.forEach(function(q, i) {
     var choice = likertAnswers[i];
     if (!choice) return;
-    var weight = IMP_WEIGHTS[choice.importance - 1];
     Object.keys(PARTIES_DISPLAY).forEach(function(k) {
       var pos  = q.positions[k] || 3;
       var raw  = 5 - Math.abs(choice.answer - pos); // 1-5
       var norm = (raw - 1) / 4;                      // 0-1
-      result[k].total += norm * weight;
-      result[k].max   += 1 * weight;
+      result[k].total += norm;
+      result[k].max   += 1;
       result[k].topics.push({ topic: currentLang === 'he' ? q.topic_he : q.topic_en, norm: norm });
     });
   });

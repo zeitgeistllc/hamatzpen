@@ -406,41 +406,6 @@ a:hover { text-decoration: underline; }
   color: #fff;
 }
 
-/* ── Importance row ── */
-.importance-row {
-  margin-top: 18px;
-  flex-direction: column;
-  gap: 8px;
-  align-items: stretch;
-}
-.importance-label {
-  font-size: .8rem;
-  color: var(--text-muted);
-  text-align: center;
-  margin: 0;
-}
-.importance-btns {
-  display: flex;
-  gap: 6px;
-}
-.imp-btn {
-  flex: 1;
-  padding: 7px 4px;
-  font-size: .75rem;
-  font-weight: 600;
-  border-radius: 8px;
-  border: 1.5px solid rgba(255,255,255,.15);
-  background: rgba(255,255,255,.05);
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: all .15s;
-  text-align: center;
-}
-.imp-btn.imp-active {
-  border-color: var(--accent);
-  background: rgba(var(--accent-rgb, 99,102,241),.15);
-  color: var(--text);
-}
 
 /* ── Result row — updated for accordion ── */
 .result-main {
