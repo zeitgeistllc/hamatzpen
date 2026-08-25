@@ -36,5 +36,25 @@
       "raam": 5,
       "miluim": 70
     }
+  },
+  {
+    "ts": "2026-08-25T22:04:32.689Z",
+    "topParty": "together",
+    "scores": {
+      "likud": 45,
+      "shas": 35,
+      "yahadut": 35,
+      "tzionit": 35,
+      "otzma": 28,
+      "together": 93,
+      "yashar": 90,
+      "gantz": 80,
+      "beytenu": 90,
+      "democrats": 83,
+      "hadash": 75,
+      "raam": 63,
+      "miluim": 83,
+      "amcha": 50
+    }
   }
 ]
