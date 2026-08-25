@@ -74,6 +74,10 @@
       <span data-lang="he">ענה על 10 שאלות קצרות על הנושאים שהכי חשובים לך —<br />ונגיד לך לאיזו מפלגה הדעות שלך הכי קרובות.</span>
       <span data-lang="en">Answer 10 short questions about the issues that matter most to you —<br />and we'll show you which party best matches your views.</span>
     </p>
+    <p class="hero-new-parties">
+      <span data-lang="he">✅ עדכון אוגוסט 2026: כולל מפלגות חדשות — ביחד, ישר!, הבית הציוני, עמך ישראל ועוד</span>
+      <span data-lang="en">✅ Updated August 2026: includes new parties — Together, Yashar!, Zionist Home, Amcha Yisrael & more</span>
+    </p>
     <p class="hero-disclaimer">
       <span data-lang="he">הכלי מיועד לצרכי מידע בלבד ואינו מהווה המלצה פוליטית.</span>
       <span data-lang="en">For informational purposes only. Not a political endorsement.</span>
@@ -256,7 +260,7 @@ var QUIZ_DATA = {
       id:1, topic:'⚖️ שוויון בנטל וגיוס חרדים',
       text:'מה עמדתך לגבי גיוס בני ישיבות לצבא?',
       answers:[
-        { text:'גיוס חובה מלא לכולם — כמו כל אזרח',                                      scores:{beytenu:5,miluim:5,together:4,yashar:4,gantz:3,democrats:3} },
+        { text:'גיוס חובה מלא לכולם — כמו כל אזרח',                                      scores:{beytenu:5,miluim:5,together:4,yashar:4,amcha:4,gantz:3,democrats:3} },
         { text:'שירות משמעותי — צבאי או אזרחי — עם מכסה מצומצמת לעילויים',               scores:{together:5,yashar:4,gantz:4,miluim:3} },
         { text:'הסכמה מדעת עם הקהילה החרדית; פטור חלקי עם תמריצים',                      scores:{likud:4,tzionit:3} },
         { text:'פטור מלא לבני ישיבות — לימוד תורה הוא גם הגנה על המדינה',                scores:{shas:5,yahadut:5,otzma:2} },
@@ -276,8 +280,8 @@ var QUIZ_DATA = {
       id:3, topic:'🔒 ביטחון ויחסי חוץ',
       text:'מהי גישתך לסכסוך עם החמאס ולמדיניות החוץ?',
       answers:[
-        { text:'לחץ צבאי מקסימלי ללא פשרות, עמידה קשוחה מול כל איום',                   scores:{otzma:5,tzionit:5,likud:3} },
-        { text:'כוח צבאי חזק בשילוב שמירה על הברית עם ארה"ב ואירופה',                    scores:{likud:4,gantz:5,together:4,yashar:4,beytenu:4} },
+        { text:'לחץ צבאי מקסימלי ללא פשרות, עמידה קשוחה מול כל איום',                   scores:{otzma:5,tzionit:5,amcha:5,likud:3} },
+        { text:'כוח צבאי חזק בשילוב שמירה על הברית עם ארה"ב ואירופה',                    scores:{likud:4,gantz:5,together:4,yashar:4,amcha:3,beytenu:4} },
         { text:'פרגמטיות: שמירה על הביטחון, אך פתיחות לדיאלוג מדיני בתנאים מתאימים',    scores:{together:5,yashar:4,gantz:3,democrats:3} },
         { text:'פתרון דיפלומטי בעדיפות; הפחתת כוח צבאי ודגש על זכויות אדם',             scores:{democrats:5,hadash:5,raam:3} },
       ]
@@ -296,8 +300,8 @@ var QUIZ_DATA = {
       id:5, topic:'🗺️ הסכסוך הפלסטיני',
       text:'מה העמדה הנכונה לגבי הסכסוך הישראלי-פלסטיני?',
       answers:[
-        { text:'סיפוח יהודה ושומרון — אין מדינה פלסטינית בשום תצורה',                   scores:{otzma:5,tzionit:5,likud:2} },
-        { text:'שמירת המצב הקיים; לא ויתורים ולא סיפוח פורמלי',                          scores:{likud:5,beytenu:3,gantz:2} },
+        { text:'סיפוח יהודה ושומרון — אין מדינה פלסטינית בשום תצורה',                   scores:{otzma:5,tzionit:5,amcha:4,likud:2} },
+        { text:'שמירת המצב הקיים; לא ויתורים ולא סיפוח פורמלי',                          scores:{likud:5,amcha:3,beytenu:3,gantz:2} },
         { text:'פתרון מדיני עתידי בתנאי ביטחון — שתי מדינות כשיהיה שותף אמין',          scores:{together:5,yashar:4,gantz:4,beytenu:3,miluim:3} },
         { text:'שתי מדינות עכשיו — סיום הכיבוש הוא התנאי לביטחון אמיתי',                scores:{democrats:5,hadash:5,raam:4} },
       ]
@@ -306,7 +310,7 @@ var QUIZ_DATA = {
       id:6, topic:'📜 ממשל, שחיתות וחוקה',
       text:'מה עמדתך בנושא מערכת המשפט, שחיתות שלטונית וחוקה?',
       answers:[
-        { text:'הרפורמה המשפטית נחוצה — בית המשפט חרג מסמכותו, יש לאזן כוחות',         scores:{likud:5,tzionit:4,otzma:4,shas:3} },
+        { text:'הרפורמה המשפטית נחוצה — בית המשפט חרג מסמכותו, יש לאזן כוחות',         scores:{likud:5,tzionit:4,otzma:4,amcha:3,shas:3} },
         { text:'מתנגד לרפורמה; שמירה על עצמאות שיפוטית עם שינויים מינוריים',            scores:{gantz:5,yashar:4,miluim:3} },
         { text:'דרוש חוקה כתובה, הגבלת כהונת ראש ממשלה ושקיפות מלאה',                  scores:{together:5,yashar:4,beytenu:5,miluim:4} },
         { text:'שינוי מהפכני: ועדת חקירה ל-7.10, ביטול שחיתות מוסדית',                  scores:{democrats:5,hadash:4,together:3} },
@@ -318,7 +322,7 @@ var QUIZ_DATA = {
       answers:[
         { text:'תמיכה מלאה בחינוך חרדי עצמאי ללא התערבות המדינה בתוכן',                 scores:{yahadut:5,shas:5} },
         { text:'כבוד לחינוך הדתי לצד לימודי ליבה מינימליים (מתמטיקה ואנגלית)',          scores:{likud:4,tzionit:3} },
-        { text:'לימודי ליבה חובה לכלל המגזרים: מדעים, אנגלית, אזרחות',                  scores:{together:5,beytenu:5,yashar:4,gantz:3,miluim:4} },
+        { text:'לימודי ליבה חובה לכלל המגזרים: מדעים, אנגלית, אזרחות',                  scores:{together:5,beytenu:5,yashar:4,amcha:4,gantz:3,miluim:4} },
         { text:'חינוך ממלכתי אחיד, חינם מגיל 3, ביטול מענקים לתוכניות ללא ליבה',       scores:{democrats:5,hadash:4} },
       ]
     },
@@ -327,7 +331,7 @@ var QUIZ_DATA = {
       text:'מה עמדתך בנושא שוויון זכויות לכלל קבוצות האוכלוסייה?',
       answers:[
         { text:'ישראל היא מדינת הלאום היהודית — עדיפות לזכויות הרוב היהודי',            scores:{otzma:5,tzionit:4,likud:3} },
-        { text:'שוויון אזרחי לכולם עם שמירת האופי היהודי-דמוקרטי של המדינה',           scores:{together:5,gantz:4,yashar:4,beytenu:3,miluim:3} },
+        { text:'שוויון אזרחי לכולם עם שמירת האופי היהודי-דמוקרטי של המדינה',           scores:{together:5,gantz:4,yashar:4,amcha:4,beytenu:3,miluim:3} },
         { text:'שוויון מלא לכל האזרחים — ערבים, נשים, להט"ב, עולים',                   scores:{democrats:5,hadash:5,raam:3} },
         { text:'שיפור ממוקד בתנאי חיים של האזרחים הערבים ורמת שירותי הרשות',           scores:{raam:5,hadash:3,democrats:2} },
       ]
@@ -349,7 +353,7 @@ var QUIZ_DATA = {
         { text:'ועדת חקירה ממלכתית מיידית עם מסקנות מחייבות — כולל אחריות ראש הממשלה', scores:{together:5,yashar:5,democrats:5,hadash:4,beytenu:4,miluim:4,gantz:4} },
         { text:'חקירה פנים-צבאית עצמאית ושינויי מבנה בצבא ובשב"כ',                     scores:{gantz:5,yashar:3,miluim:3} },
         { text:'ממתין לסיום המלחמה — לא הזמן הנכון לחקור תוך כדי לחימה',              scores:{likud:5,shas:3,yahadut:2} },
-        { text:'ביקורת על כשלי המודיעין, אך הדגש על הניצחון הצבאי',                    scores:{tzionit:4,otzma:3,likud:3} },
+        { text:'ביקורת על כשלי המודיעין, אך הדגש על הניצחון הצבאי',                    scores:{tzionit:4,amcha:4,otzma:3,likud:3} },
       ]
     },
   ],
@@ -359,7 +363,7 @@ var QUIZ_DATA = {
       id:1, topic:'⚖️ Equal Burden & Haredi Draft',
       text:'What is your position on drafting Yeshiva students into the military?',
       answers:[
-        { text:'Full mandatory service for everyone — just like any other citizen',          scores:{beytenu:5,miluim:5,together:4,yashar:4,gantz:3,democrats:3} },
+        { text:'Full mandatory service for everyone — just like any other citizen',          scores:{beytenu:5,miluim:5,together:4,yashar:4,amcha:4,gantz:3,democrats:3} },
         { text:'Meaningful service — military or civilian — with a small quota for top scholars', scores:{together:5,yashar:4,gantz:4,miluim:3} },
         { text:'Gradual integration negotiated with the Haredi community; partial exemptions with incentives', scores:{likud:4,tzionit:3} },
         { text:'Full exemption for Yeshiva students — Torah study is also defending the state', scores:{shas:5,yahadut:5,otzma:2} },
@@ -379,8 +383,8 @@ var QUIZ_DATA = {
       id:3, topic:'🔒 Security & Foreign Policy',
       text:'What is your approach to the conflict with Hamas and Israel\'s foreign policy?',
       answers:[
-        { text:'Maximum military pressure, no compromises, hardline against all threats',    scores:{otzma:5,tzionit:5,likud:3} },
-        { text:'Strong military force combined with maintaining the US and European alliance', scores:{likud:4,gantz:5,together:4,yashar:4,beytenu:4} },
+        { text:'Maximum military pressure, no compromises, hardline against all threats',    scores:{otzma:5,tzionit:5,amcha:5,likud:3} },
+        { text:'Strong military force combined with maintaining the US and European alliance', scores:{likud:4,gantz:5,together:4,yashar:4,amcha:3,beytenu:4} },
         { text:'Pragmatic: security first, but open to political dialogue under the right conditions', scores:{together:5,yashar:4,gantz:3,democrats:3} },
         { text:'Diplomatic solution first; reduce military force and prioritize human rights', scores:{democrats:5,hadash:5,raam:3} },
       ]
@@ -399,8 +403,8 @@ var QUIZ_DATA = {
       id:5, topic:'🗺️ The Palestinian Conflict',
       text:'What is your position on the Israeli-Palestinian conflict?',
       answers:[
-        { text:'Annex Judea and Samaria — no Palestinian state in any form',                 scores:{otzma:5,tzionit:5,likud:2} },
-        { text:'Maintain the status quo — no concessions, no formal annexation',             scores:{likud:5,beytenu:3,gantz:2} },
+        { text:'Annex Judea and Samaria — no Palestinian state in any form',                 scores:{otzma:5,tzionit:5,amcha:4,likud:2} },
+        { text:'Maintain the status quo — no concessions, no formal annexation',             scores:{likud:5,amcha:3,beytenu:3,gantz:2} },
         { text:'A future political solution under security conditions — two states when there is a reliable partner', scores:{together:5,yashar:4,gantz:4,beytenu:3,miluim:3} },
         { text:'Two states now — ending the occupation is the prerequisite for real security', scores:{democrats:5,hadash:5,raam:4} },
       ]
@@ -409,7 +413,7 @@ var QUIZ_DATA = {
       id:6, topic:'📜 Governance, Corruption & Constitution',
       text:'What is your position on the judiciary, political corruption, and a constitution?',
       answers:[
-        { text:'The judicial reform is necessary — the court overstepped its authority',     scores:{likud:5,tzionit:4,otzma:4,shas:3} },
+        { text:'The judicial reform is necessary — the court overstepped its authority',     scores:{likud:5,tzionit:4,otzma:4,amcha:3,shas:3} },
         { text:'Against the reform; maintain judicial independence with minor adjustments',  scores:{gantz:5,yashar:4,miluim:3} },
         { text:'A written constitution, term limits for PM, and full transparency',          scores:{together:5,yashar:4,beytenu:5,miluim:4} },
         { text:'Revolutionary change: Oct 7 inquiry commission, end institutional corruption', scores:{democrats:5,hadash:4,together:3} },
@@ -421,7 +425,7 @@ var QUIZ_DATA = {
       answers:[
         { text:'Full support for independent Haredi education without state interference in content', scores:{yahadut:5,shas:5} },
         { text:'Respect for religious education alongside minimal core subjects (math and English)', scores:{likud:4,tzionit:3} },
-        { text:'Mandatory core curriculum for all sectors: sciences, English, civics',       scores:{together:5,beytenu:5,yashar:4,gantz:3,miluim:4} },
+        { text:'Mandatory core curriculum for all sectors: sciences, English, civics',       scores:{together:5,beytenu:5,yashar:4,amcha:4,gantz:3,miluim:4} },
         { text:'Unified public education, free from age 3, no funding for non-core programs', scores:{democrats:5,hadash:4} },
       ]
     },
@@ -430,7 +434,7 @@ var QUIZ_DATA = {
       text:'What is your position on equal rights for all groups in Israeli society?',
       answers:[
         { text:'Israel is the Jewish nation-state — priority to the rights and needs of the Jewish majority', scores:{otzma:5,tzionit:4,likud:3} },
-        { text:'Civil equality for all while preserving the Jewish-democratic character of the state', scores:{together:5,gantz:4,yashar:4,beytenu:3,miluim:3} },
+        { text:'Civil equality for all while preserving the Jewish-democratic character of the state', scores:{together:5,gantz:4,yashar:4,amcha:4,beytenu:3,miluim:3} },
         { text:'Full equality for all citizens — Arabs, women, LGBTQ+, immigrants',          scores:{democrats:5,hadash:5,raam:3} },
         { text:'Targeted improvement in living conditions for Arab citizens and municipal services', scores:{raam:5,hadash:3,democrats:2} },
       ]
@@ -452,7 +456,7 @@ var QUIZ_DATA = {
         { text:'An immediate state commission of inquiry with binding conclusions — including PM accountability', scores:{together:5,yashar:5,democrats:5,hadash:4,beytenu:4,miluim:4,gantz:4} },
         { text:'Independent internal military investigation and structural changes in the IDF and Shin Bet', scores:{gantz:5,yashar:3,miluim:3} },
         { text:'Wait for the war to end — not the right time to investigate during active combat', scores:{likud:5,shas:3,yahadut:2} },
-        { text:'Criticize intelligence failures, but keep the focus on military victory, not politics', scores:{tzionit:4,otzma:3,likud:3} },
+        { text:'Criticize intelligence failures, but keep the focus on military victory, not politics', scores:{tzionit:4,amcha:4,otzma:3,likud:3} },
       ]
     },
   ]
@@ -465,14 +469,15 @@ var PARTIES_DISPLAY = {
   yahadut:  { he:'יהדות התורה',          en:'United Torah Judaism', leader:'Yitzchak Goldknopf', bloc_he:'חרדי',      bloc_en:'Haredi',          url:'https://yahaduttorah.org.il/' },
   tzionit:  { he:'הציונות הדתית',        en:'Religious Zionism',  leader:'Bezalel Smotrich',    bloc_he:'ימין דתי',    bloc_en:'Religious Right', url:'https://zionutdatit.org.il/' },
   otzma:    { he:'עוצמה יהודית',         en:'Jewish Power',       leader:'Itamar Ben Gvir',     bloc_he:'ימין קיצוני', bloc_en:'Far Right',       url:'https://www.otzma.org.il/' },
-  together: { he:'ביחד (יש עתיד + בנט)', en:'Together (Lapid+Bennett)', leader:'Lapid & Bennett', bloc_he:'מרכז-ימין', bloc_en:'Center-Right',   url:'https://yeshatid.org.il/' },
+  together: { he:'ביחד',                  en:'Together',           leader:'Naftali Bennett',      bloc_he:'מרכז-ימין',   bloc_en:'Center-Right',   url:'https://yeshatid.org.il/' },
   yashar:   { he:'יש״ר',                 en:'Yashar',             leader:'Gadi Eisenkot',        bloc_he:'מרכז-ימין',   bloc_en:'Center-Right',   url:'https://www.jewishvirtuallibrary.org/yashar-with-eisenkot' },
-  gantz:    { he:'המחנה הממלכתי',        en:'National Unity',     leader:'Benny Gantz',          bloc_he:'מרכז',        bloc_en:'Center',          url:'https://mamlachti.org.il/' },
+  gantz:    { he:'כחול לבן',              en:'Blue and White',     leader:'Benny Gantz',          bloc_he:'מרכז',        bloc_en:'Center',          url:'https://mamlachti.org.il/' },
   beytenu:  { he:'ישראל ביתנו',          en:'Yisrael Beiteinu',   leader:'Avigdor Lieberman',   bloc_he:'ימין חילוני', bloc_en:'Secular Right',  url:'https://www.beytenu.org.il/' },
   democrats:{ he:'הדמוקרטים',            en:'The Democrats',      leader:'Yair Golan',           bloc_he:'שמאל',        bloc_en:'Left',            url:'https://democrats.org.il/' },
-  hadash:   { he:'חד״ש-תע״ל',           en:'Hadash-Ta\'al',      leader:'Yusuf Jabarin',        bloc_he:'שמאל ערבי',   bloc_en:'Arab Left',      url:'https://hadash.org.il/' },
+  hadash:   { he:'הרשימה המשותפת',        en:'Joint List',         leader:'Yusuf Jabarin',        bloc_he:'שמאל ערבי',   bloc_en:'Arab Left',      url:'https://hadash.org.il/' },
   raam:     { he:'רע״מ',                 en:'Ra\'am',             leader:'Mansour Abbas',        bloc_he:'ערבי',        bloc_en:'Arab',            url:'https://raam-party.com/' },
-  miluim:   { he:'מפלגת המילואים',       en:'Reservists Party',   leader:'Yoaz Hendel',          bloc_he:'מרכז-ימין',   bloc_en:'Center-Right',   url:'https://miluimparty.co.il/' },
+  miluim:   { he:'הבית הציוני',           en:'Zionist Home',       leader:'Yoaz Hendel & Chili Tropper', bloc_he:'מרכז-ימין', bloc_en:'Center-Right', url:'https://miluimparty.co.il/' },
+  amcha:    { he:'עמך ישראל',             en:'Amcha Yisrael',      leader:'Ofer Winter',                bloc_he:'ימין',      bloc_en:'Right',         url:'https://www.amchayisrael.co.il/' },
 };
 </script>
 <script>
@@ -508,7 +513,8 @@ function startQuiz() {
   document.getElementById('home').style.display            = 'none';
   document.getElementById('how').style.display             = 'none';
   renderQuestion();
-  window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - 70, behavior: 'smooth' });
+  var headerH = document.querySelector('.site-header') ? document.querySelector('.site-header').offsetHeight : 70;
+  window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - headerH, behavior: 'smooth' });
 }
 
 function restartQuiz() {
@@ -523,6 +529,8 @@ function currentQuestions() {
 }
 
 function renderQuestion() {
+  var qs = document.getElementById('quiz-section');
+  if (qs) { var hh = document.querySelector('.site-header'); window.scrollTo({ top: qs.offsetTop - (hh ? hh.offsetHeight : 70), behavior: 'smooth' }); }
   var questions = currentQuestions();
   var q     = questions[currentQ];
   var total = questions.length;
@@ -657,7 +665,8 @@ function showResults() {
     });
   });
 
-  window.scrollTo({ top: document.getElementById('results-section').offsetTop - 70, behavior: 'smooth' });
+  var headerH2 = document.querySelector('.site-header') ? document.querySelector('.site-header').offsetHeight : 70;
+  window.scrollTo({ top: document.getElementById('results-section').offsetTop - headerH2, behavior: 'smooth' });
 }
 </script>
 </body>
