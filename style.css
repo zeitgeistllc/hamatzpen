@@ -319,10 +319,6 @@ a:hover { text-decoration: underline; }
   border-radius: var(--radius);
   padding: 18px 22px;
   box-shadow: var(--shadow);
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  gap: 16px;
   animation: fadeUp .3s ease;
 }
 .result-row.top-match {
@@ -383,47 +379,138 @@ a:hover { text-decoration: underline; }
   margin-bottom: 32px;
   flex-wrap: wrap;
 }
-/* Why section */
-#why-section { margin: 0 auto 28px; max-width: 560px; }
-.why-box {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 14px;
-  padding: 20px 24px;
-}
-.why-title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 14px;
-}
-.why-label {
-  font-size: .82rem;
-  font-weight: 600;
-  color: var(--text-muted);
-  margin: 10px 0 6px;
-  letter-spacing: .3px;
-}
-.why-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* ── Likert answer buttons ── */
+.likert-grid {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 10px;
 }
-.why-list li {
-  font-size: .9rem;
+.likert-btn {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background: rgba(255,255,255,.07);
   color: var(--text);
-  padding: 6px 12px;
-  background: rgba(16,185,129,.1);
+  cursor: pointer;
+  text-align: center;
+  transition: background .15s, border-color .15s, transform .1s;
+  border-color: rgba(255,255,255,.12);
+}
+.likert-btn:hover { background: rgba(255,255,255,.13); transform: translateY(-1px); }
+.likert-btn.likert-selected {
+  background: color-mix(in srgb, var(--lk-color) 22%, transparent);
+  border-color: var(--lk-color);
+  color: #fff;
+}
+
+/* ── Importance row ── */
+.importance-row {
+  margin-top: 18px;
+  flex-direction: column;
+  gap: 8px;
+  align-items: stretch;
+}
+.importance-label {
+  font-size: .8rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin: 0;
+}
+.importance-btns {
+  display: flex;
+  gap: 6px;
+}
+.imp-btn {
+  flex: 1;
+  padding: 7px 4px;
+  font-size: .75rem;
+  font-weight: 600;
   border-radius: 8px;
-  border: 1px solid rgba(16,185,129,.2);
+  border: 1.5px solid rgba(255,255,255,.15);
+  background: rgba(255,255,255,.05);
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all .15s;
+  text-align: center;
 }
-.why-list-red li {
-  background: rgba(239,68,68,.08);
-  border-color: rgba(239,68,68,.2);
+.imp-btn.imp-active {
+  border-color: var(--accent);
+  background: rgba(var(--accent-rgb, 99,102,241),.15);
+  color: var(--text);
 }
+
+/* ── Result row — updated for accordion ── */
+.result-main {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.result-left  { flex: 1; }
+.result-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.accordion-btn {
+  background: none;
+  border: 1px solid rgba(255,255,255,.2);
+  color: var(--text-muted);
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  font-size: .85rem;
+  line-height: 1;
+  transition: all .15s;
+}
+.accordion-btn:hover { background: rgba(255,255,255,.08); color: var(--text); }
+
+/* ── Topic breakdown (accordion body) ── */
+.result-topics {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255,255,255,.08);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.topic-row {
+  display: grid;
+  grid-template-columns: 1fr 120px 36px;
+  align-items: center;
+  gap: 8px;
+}
+.topic-name {
+  font-size: .78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topic-bar-wrap {
+  height: 6px;
+  background: rgba(255,255,255,.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.topic-bar {
+  height: 100%;
+  border-radius: 3px;
+  transition: width .4s ease;
+}
+.topic-pct {
+  font-size: .72rem;
+  font-weight: 700;
+  text-align: end;
+}
+
+/* Why section (kept for fallback) */
+#why-section { display: none; }
 
 .results-disclaimer {
   text-align: center;

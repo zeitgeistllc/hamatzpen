@@ -112,11 +112,23 @@
       <h2 class="question-text" id="q-text"></h2>
       <p class="question-topic" id="q-topic"></p>
       <div class="answers-grid" id="answers-grid"></div>
+      <div class="importance-row" id="importance-row" style="display:none;">
+        <p class="importance-label" id="importance-label"></p>
+        <div class="importance-btns">
+          <button class="imp-btn" data-val="1" onclick="setImportance(1)"></button>
+          <button class="imp-btn imp-active" data-val="2" onclick="setImportance(2)"></button>
+          <button class="imp-btn" data-val="3" onclick="setImportance(3)"></button>
+        </div>
+      </div>
     </div>
     <div class="quiz-nav">
       <button class="btn btn-outline" id="btn-back" onclick="prevQuestion()" style="display:none;">
         <span data-lang="he">← חזור</span>
         <span data-lang="en">← Back</span>
+      </button>
+      <button class="btn btn-primary" id="btn-next" onclick="nextQuestion()" style="display:none;">
+        <span data-lang="he">הבא ←</span>
+        <span data-lang="en">Next ←</span>
       </button>
     </div>
   </div>
@@ -464,6 +476,70 @@ var QUIZ_DATA = {
   ]
 };
 
+// ── Likert quiz data (statements + party positions 1-5) ──────
+var QUIZ_LIKERT = [
+  {
+    id:1, topic_he:'⚖️ גיוס חרדים', topic_en:'⚖️ Haredi Draft',
+    text_he:'בני ישיבות צריכים לשרת בצבא כמו כל אזרח אחר',
+    text_en:'Yeshiva students should serve in the military like every other citizen',
+    positions:{ beytenu:5,miluim:5,together:4,yashar:4,gantz:4,democrats:4,hadash:4,amcha:3,raam:3,likud:2,tzionit:2,otzma:1,shas:1,yahadut:1 }
+  },
+  {
+    id:2, topic_he:'💰 מדיניות כלכלית', topic_en:'💰 Economic Policy',
+    text_he:'המדינה צריכה להגדיל שירותים ציבוריים ולצמצם פערים חברתיים',
+    text_en:'The state should expand public services and reduce social inequality',
+    positions:{ democrats:5,hadash:5,raam:4,shas:4,yahadut:3,together:3,gantz:3,yashar:3,miluim:3,likud:2,beytenu:2,tzionit:2,otzma:2,amcha:2 }
+  },
+  {
+    id:3, topic_he:'🔒 ביטחון', topic_en:'🔒 Security',
+    text_he:'ישראל צריכה לנהל מדיניות ביטחונית נוקשה ולא לפשר על אינטרסים ביטחוניים',
+    text_en:'Israel must pursue an uncompromising hardline security policy',
+    positions:{ otzma:5,tzionit:5,amcha:5,shas:4,yahadut:4,likud:4,beytenu:4,gantz:3,together:3,yashar:3,miluim:3,raam:2,democrats:2,hadash:1 }
+  },
+  {
+    id:4, topic_he:'🕍 דת ומדינה', topic_en:'🕍 Religion & State',
+    text_he:'יש להפריד בין דת למדינה — נישואין אזרחיים ותחבורה ציבורית בשבת',
+    text_en:'Religion and state should be separated — civil marriage and Shabbat transport',
+    positions:{ beytenu:5,together:5,democrats:5,hadash:4,yashar:4,gantz:4,miluim:3,raam:2,amcha:2,likud:2,tzionit:2,otzma:1,shas:1,yahadut:1 }
+  },
+  {
+    id:5, topic_he:'🗺️ הסכסוך הפלסטיני', topic_en:'🗺️ Palestinian Conflict',
+    text_he:'ישראל צריכה לשאוף לפתרון שתי המדינות עם הפלסטינים',
+    text_en:'Israel should pursue a two-state solution with the Palestinians',
+    positions:{ democrats:5,hadash:5,raam:4,together:4,yashar:4,gantz:3,beytenu:3,miluim:3,likud:2,shas:2,yahadut:2,amcha:1,tzionit:1,otzma:1 }
+  },
+  {
+    id:6, topic_he:'📜 משפט ושחיתות', topic_en:'📜 Judiciary & Corruption',
+    text_he:'הרפורמה המשפטית שהממשלה קידמה מסוכנת לדמוקרטיה הישראלית',
+    text_en:'The judicial reform promoted by the government is dangerous to Israeli democracy',
+    positions:{ democrats:5,hadash:5,together:5,beytenu:5,yashar:5,miluim:4,gantz:4,raam:3,yahadut:2,amcha:2,tzionit:1,likud:1,otzma:1,shas:1 }
+  },
+  {
+    id:7, topic_he:'🏫 חינוך', topic_en:'🏫 Education',
+    text_he:'לימודי ליבה (מתמטיקה, מדעים, אנגלית) צריכים להיות חובה לכל הילדים',
+    text_en:'Core subjects (math, sciences, English) should be mandatory for all children',
+    positions:{ beytenu:5,together:5,democrats:5,hadash:4,yashar:4,amcha:4,gantz:4,miluim:4,likud:3,raam:3,tzionit:2,otzma:2,shas:1,yahadut:1 }
+  },
+  {
+    id:8, topic_he:'🌈 שוויון זכויות', topic_en:'🌈 Equal Rights',
+    text_he:'יש להבטיח שוויון זכויות מלא לכל אזרחי ישראל — יהודים, ערבים ולהט"בים',
+    text_en:'Full equal rights must be guaranteed for all Israeli citizens — Jews, Arabs, LGBTQ+',
+    positions:{ democrats:5,hadash:5,together:4,yashar:4,gantz:4,beytenu:4,miluim:3,amcha:3,likud:3,raam:2,tzionit:2,otzma:1,shas:1,yahadut:1 }
+  },
+  {
+    id:9, topic_he:'🏥 בריאות ורווחה', topic_en:'🏥 Health & Welfare',
+    text_he:'המדינה צריכה להגדיל באופן משמעותי את ההשקעה בבריאות הציבורית',
+    text_en:'The state should significantly increase investment in public healthcare',
+    positions:{ democrats:5,hadash:5,raam:4,gantz:4,together:4,yashar:3,miluim:3,shas:3,yahadut:3,likud:3,beytenu:3,amcha:3,tzionit:2,otzma:2 }
+  },
+  {
+    id:10, topic_he:'🔍 אחריות על 7.10', topic_en:'🔍 Oct 7th Accountability',
+    text_he:'יש להקים ועדת חקירה ממלכתית לכשלי ה-7 באוקטובר, כולל בחינת אחריות ראש הממשלה',
+    text_en:'A state inquiry commission must be established for Oct 7 failures, including PM accountability',
+    positions:{ together:5,yashar:5,democrats:5,hadash:5,beytenu:5,miluim:5,gantz:4,raam:3,amcha:2,tzionit:2,otzma:2,likud:1,shas:1,yahadut:1 }
+  }
+];
+
 // ── Party name display ────────────────────────────────────────
 var PARTIES_DISPLAY = {
   likud:    { he:'הליכוד',               en:'Likud',             leader:'Benjamin Netanyahu',  bloc_he:'ימין',        bloc_en:'Right',          url:'https://www.likud.org.il/' },
@@ -487,10 +563,10 @@ var PARTIES_DISPLAY = {
 initLang();
 
 // ── State ──────────────────────────────────────────────────
-var currentQ      = 0;
-var scores        = {};
-var chosenAnswers = [];
-var currentLang = getLang();
+var currentQ       = 0;
+var currentLang    = getLang();
+var likertAnswers  = []; // [{answer:1-5, importance:1-3}]
+var currentImp     = 2;  // default importance per question
 
 window.addEventListener('langchange', function(e) {
   currentLang = e.detail;
@@ -499,19 +575,25 @@ window.addEventListener('langchange', function(e) {
   }
 });
 
-function resetScores() {
-  scores = {};
-  Object.keys(PARTIES_DISPLAY).forEach(function(k) { scores[k] = 0; });
-}
-
 // ── Quiz flow ──────────────────────────────────────────────
 var quizStartTime = 0;
 
+var LIKERT_LABELS = {
+  he: ['מסכים בחלוטין','מסכים','ניטרלי','מתנגד','מתנגד בחלוטין'],
+  en: ['Strongly Agree','Agree','Neutral','Disagree','Strongly Disagree']
+};
+var LIKERT_COLORS = ['#16a34a','#4ade80','#6b7280','#f97316','#ef4444'];
+var IMP_LABELS = {
+  he: ['חשיבות נמוכה','חשיבות בינונית','חשיבות גבוהה'],
+  en: ['Low priority','Medium priority','High priority']
+};
+var IMP_WEIGHTS = [0.5, 1, 1.5];
+
 function startQuiz() {
-  currentQ = 0;
-  chosenAnswers = [];
+  currentQ      = 0;
+  likertAnswers = [];
+  currentImp    = 2;
   quizStartTime = Date.now();
-  resetScores();
   document.getElementById('quiz-section').style.display    = 'block';
   document.getElementById('results-section').style.display = 'none';
   document.getElementById('home').style.display            = 'none';
@@ -521,42 +603,8 @@ function startQuiz() {
   window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - headerH, behavior: 'smooth' });
 }
 
-function computeWhy(topPartyKey) {
-  var questions = currentQuestions();
-  var agreements = [], disagreements = [];
-  chosenAnswers.forEach(function(choice) {
-    var q = questions[choice.q];
-    var ans = q.answers[choice.a];
-    var chosen_score = ans.scores[topPartyKey] || 0;
-    var max_score = Math.max.apply(null, q.answers.map(function(a) { return a.scores[topPartyKey] || 0; }));
-    var min_score = Math.min.apply(null, q.answers.map(function(a) { return a.scores[topPartyKey] || 0; }));
-    var diff = chosen_score - max_score;
-    if (diff >= -1) {
-      agreements.push({ topic: q.topic });
-    } else if (chosen_score <= min_score + 1) {
-      disagreements.push({ topic: q.topic, diff: diff });
-    }
-  });
-  disagreements.sort(function(a, b) { return a.diff - b.diff; });
-  return { agreements: agreements.slice(0, 3), disagreements: disagreements.slice(0, 2) };
-}
-
-function shareResult(topName, topPct, lang) {
-  var text = lang === 'he'
-    ? '🧭 המצפן הפוליטי שלי: ' + topName + ' — ' + topPct + '% התאמה\nבדוק את שלך: https://hamatzpen.life'
-    : '🧭 My political compass: ' + topName + ' — ' + topPct + '% match\nCheck yours: https://hamatzpen.life';
-  var btn = document.getElementById('share-btn');
-  if (navigator.share) {
-    navigator.share({ text: text }).catch(function() {});
-  } else {
-    navigator.clipboard.writeText(text).then(function() {
-      if (btn) { btn.textContent = lang === 'he' ? '✓ הועתק!' : '✓ Copied!'; setTimeout(function() { btn.textContent = lang === 'he' ? '📤 שתף תוצאה' : '📤 Share Result'; }, 2000); }
-    }).catch(function() { prompt('Copy this:', text); });
-  }
-}
-
 function restartQuiz() {
-  chosenAnswers = [];
+  likertAnswers = [];
   var whyEl = document.getElementById('why-section');
   if (whyEl) { whyEl.style.display = 'none'; whyEl.innerHTML = ''; }
   var shareEl = document.getElementById('share-btn');
@@ -567,139 +615,204 @@ function restartQuiz() {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function currentQuestions() {
-  return QUIZ_DATA[currentLang] || QUIZ_DATA['he'];
-}
-
 function renderQuestion() {
   var qs = document.getElementById('quiz-section');
   if (qs) { var hh = document.querySelector('.site-header'); window.scrollTo({ top: qs.offsetTop - (hh ? hh.offsetHeight : 70), behavior: 'smooth' }); }
-  var questions = currentQuestions();
-  var q     = questions[currentQ];
-  var total = questions.length;
+  var q     = QUIZ_LIKERT[currentQ];
+  var total = QUIZ_LIKERT.length;
   var lang  = currentLang;
+  var isHe  = lang === 'he';
 
   document.getElementById('progress-bar').style.width = ((currentQ / total) * 100) + '%';
-  document.getElementById('progress-label').textContent =
-    lang === 'he' ? ('שאלה ' + (currentQ+1) + ' מתוך ' + total)
-                  : ('Question ' + (currentQ+1) + ' of ' + total);
-  document.getElementById('q-number').textContent =
-    lang === 'he' ? ('שאלה ' + (currentQ+1)) : ('Question ' + (currentQ+1));
-  document.getElementById('q-text').textContent  = q.text;
-  document.getElementById('q-topic').textContent = q.topic;
+  document.getElementById('progress-label').textContent = isHe
+    ? ('שאלה ' + (currentQ+1) + ' מתוך ' + total)
+    : ('Question ' + (currentQ+1) + ' of ' + total);
+  document.getElementById('q-number').textContent = isHe
+    ? ('שאלה ' + (currentQ+1)) : ('Question ' + (currentQ+1));
+  document.getElementById('q-text').textContent  = isHe ? q.text_he : q.text_en;
+  document.getElementById('q-topic').textContent = isHe ? q.topic_he : q.topic_en;
 
+  // Likert buttons
   var grid = document.getElementById('answers-grid');
   grid.innerHTML = '';
-  q.answers.forEach(function(ans, i) {
+  grid.className = 'answers-grid likert-grid';
+  LIKERT_LABELS[lang].forEach(function(label, i) {
+    var val = 5 - i; // 5=strongly agree … 1=strongly disagree
     var btn = document.createElement('button');
-    btn.className   = 'answer-btn';
-    btn.textContent = ans.text;
-    btn.onclick     = function() { selectAnswer(i); };
+    btn.className = 'answer-btn likert-btn';
+    btn.textContent = label;
+    btn.style.setProperty('--lk-color', LIKERT_COLORS[i]);
+    // restore previous answer if navigating back
+    var prev = likertAnswers[currentQ];
+    if (prev && prev.answer === val) btn.classList.add('likert-selected');
+    btn.onclick = (function(v){ return function() { selectLikert(v); }; })(val);
     grid.appendChild(btn);
   });
 
+  // Importance row
+  currentImp = (likertAnswers[currentQ] && likertAnswers[currentQ].importance) || 2;
+  renderImportance(lang);
+
+  document.getElementById('importance-row').style.display = 'flex';
   document.getElementById('btn-back').style.display = currentQ > 0 ? 'inline-flex' : 'none';
+  document.getElementById('btn-next').style.display = likertAnswers[currentQ] ? 'inline-flex' : 'none';
 }
 
-function selectAnswer(answerIndex) {
-  var q      = currentQuestions()[currentQ];
-  var chosen = q.answers[answerIndex];
-
-  chosenAnswers.push({ q: currentQ, a: answerIndex });
-  Object.entries(chosen.scores).forEach(function(entry) {
-    var party = entry[0], pts = entry[1];
-    if (scores[party] !== undefined) scores[party] += pts;
+function renderImportance(lang) {
+  var isHe = (lang || currentLang) === 'he';
+  document.getElementById('importance-label').textContent = isHe ? 'כמה נושא זה חשוב לך?' : 'How important is this topic?';
+  var btns = document.querySelectorAll('.imp-btn');
+  btns.forEach(function(btn, i) {
+    btn.textContent = IMP_LABELS[isHe ? 'he' : 'en'][i];
+    btn.classList.toggle('imp-active', (i + 1) === currentImp);
   });
+}
 
-  var btns = document.querySelectorAll('.answer-btn');
-  btns.forEach(function(b, i) {
-    b.disabled = true;
-    if (i === answerIndex) b.classList.add('selected');
+function setImportance(val) {
+  currentImp = val;
+  if (likertAnswers[currentQ]) likertAnswers[currentQ].importance = val;
+  renderImportance();
+}
+
+function selectLikert(val) {
+  likertAnswers[currentQ] = { answer: val, importance: currentImp };
+  document.querySelectorAll('.likert-btn').forEach(function(btn, i) {
+    var bVal = 5 - i;
+    btn.classList.toggle('likert-selected', bVal === val);
   });
+  document.getElementById('btn-next').style.display = 'inline-flex';
+}
 
-  setTimeout(function() {
-    currentQ++;
-    if (currentQ < currentQuestions().length) {
-      renderQuestion();
-    } else {
-      showResults();
-    }
-  }, 350);
+function nextQuestion() {
+  if (!likertAnswers[currentQ]) return;
+  currentQ++;
+  if (currentQ < QUIZ_LIKERT.length) {
+    renderQuestion();
+  } else {
+    showResults();
+  }
 }
 
 function prevQuestion() {
   if (currentQ > 0) { currentQ--; renderQuestion(); }
 }
 
-// ── Results ────────────────────────────────────────────────
-function computePcts() {
-  var questions = currentQuestions();
-  var maxTotal  = {};
-  Object.keys(PARTIES_DISPLAY).forEach(function(k) { maxTotal[k] = 0; });
-  questions.forEach(function(q) {
+function computeScoresLikert() {
+  var result = {};
+  Object.keys(PARTIES_DISPLAY).forEach(function(k) { result[k] = { total: 0, max: 0, topics: [] }; });
+
+  QUIZ_LIKERT.forEach(function(q, i) {
+    var choice = likertAnswers[i];
+    if (!choice) return;
+    var weight = IMP_WEIGHTS[choice.importance - 1];
     Object.keys(PARTIES_DISPLAY).forEach(function(k) {
-      var best = Math.max.apply(null, q.answers.map(function(a) { return a.scores[k] || 0; }));
-      maxTotal[k] += best;
+      var pos  = q.positions[k] || 3;
+      var raw  = 5 - Math.abs(choice.answer - pos); // 1-5
+      var norm = (raw - 1) / 4;                      // 0-1
+      result[k].total += norm * weight;
+      result[k].max   += 1 * weight;
+      result[k].topics.push({ topic: currentLang === 'he' ? q.topic_he : q.topic_en, norm: norm });
     });
   });
-  var pcts = {};
-  Object.keys(PARTIES_DISPLAY).forEach(function(k) {
-    pcts[k] = maxTotal[k] > 0 ? Math.round((scores[k] / maxTotal[k]) * 100) : 0;
+
+  var pcts = {}, topicMap = {};
+  Object.keys(result).forEach(function(k) {
+    pcts[k]    = result[k].max > 0 ? Math.round((result[k].total / result[k].max) * 100) : 0;
+    topicMap[k] = result[k].topics;
   });
-  return pcts;
+  return { pcts: pcts, topics: topicMap };
 }
 
+// ── Results ────────────────────────────────────────────────
 function saveAnonymousResult(pcts, topPartyKey) {
   try {
-    var hp    = (document.getElementById('hp_email') || {}).value || '';
+    var hp = (document.getElementById('hp_email') || {}).value || '';
     var elapsed = quizStartTime ? Date.now() - quizStartTime : 99999;
     fetch('/api/vote', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        topParty: topPartyKey,
-        scores:   pcts,
-        _hp:      hp,
-        _t:       elapsed,
-        _n:       currentQ   // number of questions answered (should equal total)
-      }),
+      body: JSON.stringify({ topParty: topPartyKey, scores: pcts, _hp: hp, _t: elapsed, _n: currentQ }),
     }).catch(function() {});
   } catch(e) {}
+}
+
+function shareResult(topName, topPct, lang) {
+  var text = lang === 'he'
+    ? '🧭 המצפן הפוליטי שלי: ' + topName + ' - ' + topPct + '% התאמה\nבדוק את שלך: https://hamatzpen.life'
+    : '🧭 My political compass: ' + topName + ' - ' + topPct + '% match\nCheck yours: https://hamatzpen.life';
+  var btn = document.getElementById('share-btn');
+  if (navigator.share) {
+    navigator.share({ text: text }).catch(function() {});
+  } else {
+    navigator.clipboard.writeText(text).then(function() {
+      if (btn) { btn.textContent = lang === 'he' ? '✓ הועתק!' : '✓ Copied!'; setTimeout(function() { btn.textContent = lang === 'he' ? '📤 שתף תוצאה' : '📤 Share Result'; }, 2000); }
+    }).catch(function() { prompt('Copy this:', text); });
+  }
 }
 
 function showResults() {
   document.getElementById('quiz-section').style.display    = 'none';
   document.getElementById('results-section').style.display = 'block';
 
-  var pcts   = computePcts();
-  var sorted = Object.entries(pcts).sort(function(a, b) { return b[1] - a[1]; });
-  var lang   = currentLang;
+  var computed = computeScoresLikert();
+  var pcts     = computed.pcts;
+  var topicMap = computed.topics;
+  var sorted   = Object.entries(pcts).sort(function(a, b) { return b[1] - a[1]; });
+  var lang     = currentLang;
+  var isHe     = lang === 'he';
 
   if (sorted.length) saveAnonymousResult(pcts, sorted[0][0]);
 
   var grid = document.getElementById('results-grid');
   grid.innerHTML = '';
+
   sorted.forEach(function(entry, idx) {
     var key = entry[0], pct = entry[1];
     var p   = PARTIES_DISPLAY[key];
+    var name = isHe ? p.he : (p.en || p.he);
+    var bloc = isHe ? p.bloc_he : (p.bloc_en || p.bloc_he);
+    var isTop = idx === 0;
+
     var row = document.createElement('div');
-    row.className = 'result-row' + (idx === 0 ? ' top-match' : '');
-    var name  = lang === 'he' ? p.he  : (p.en  || p.he);
-    var bloc  = lang === 'he' ? p.bloc_he : (p.bloc_en || p.bloc_he);
-    var badge = lang === 'he' ? 'ההתאמה הגבוהה ביותר ✶' : 'Best Match ✶';
-    var link  = lang === 'he' ? 'לאתר המפלגה ←' : 'Party Website ←';
+    row.className = 'result-row' + (isTop ? ' top-match' : '');
+
+    // Topic breakdown for accordion
+    var topics = topicMap[key] || [];
+    var topicsHtml = '<div class="result-topics" style="display:none;">';
+    topics.forEach(function(t) {
+      var pctT = Math.round(t.norm * 100);
+      var color = t.norm >= 0.6 ? '#16a34a' : t.norm >= 0.4 ? '#f97316' : '#ef4444';
+      topicsHtml += '<div class="topic-row"><span class="topic-name">' + t.topic + '</span>';
+      topicsHtml += '<div class="topic-bar-wrap"><div class="topic-bar" style="width:' + pctT + '%;background:' + color + '"></div></div>';
+      topicsHtml += '<span class="topic-pct" style="color:' + color + '">' + pctT + '%</span></div>';
+    });
+    topicsHtml += '</div>';
+
     row.innerHTML =
-      '<div>' +
-        '<div class="result-party-header">' +
-          '<span class="result-party-name">' + name + '</span>' +
-          (idx === 0 ? '<span class="result-badge">' + badge + '</span>' : '') +
+      '<div class="result-main">' +
+        '<div class="result-left">' +
+          '<div class="result-party-header">' +
+            '<span class="result-party-name">' + name + '</span>' +
+            (isTop ? '<span class="result-badge">' + (isHe ? '✶ ההתאמה הגבוהה ביותר' : '✶ Best Match') + '</span>' : '') +
+          '</div>' +
+          '<div class="result-party-desc">' + p.leader + ' · ' + bloc + '</div>' +
+          '<div class="result-bar-wrap"><div class="result-bar" style="width:0%" data-pct="' + pct + '"></div></div>' +
         '</div>' +
-        '<div class="result-party-desc">' + p.leader + ' · ' + bloc + '</div>' +
-        '<div class="result-bar-wrap"><div class="result-bar" style="width:0%" data-pct="' + pct + '"></div></div>' +
-        '<a href="' + p.url + '" class="result-link" target="_blank" rel="noopener">' + link + '</a>' +
+        '<div class="result-right">' +
+          '<div class="result-pct">' + pct + '%</div>' +
+          '<button class="accordion-btn" aria-label="expand">▾</button>' +
+        '</div>' +
       '</div>' +
-      '<div class="result-pct">' + pct + '%</div>';
+      topicsHtml;
+
     grid.appendChild(row);
+
+    row.querySelector('.accordion-btn').addEventListener('click', function() {
+      var td = row.querySelector('.result-topics');
+      var open = td.style.display !== 'none';
+      td.style.display = open ? 'none' : 'block';
+      this.textContent = open ? '▾' : '▴';
+    });
   });
 
   requestAnimationFrame(function() {
@@ -709,39 +822,18 @@ function showResults() {
     });
   });
 
-  // "Why" section for top match
+  // Share button
   var topKey  = sorted[0][0];
   var topPct  = sorted[0][1];
-  var topName = lang === 'he' ? PARTIES_DISPLAY[topKey].he : (PARTIES_DISPLAY[topKey].en || PARTIES_DISPLAY[topKey].he);
-  var why = computeWhy(topKey);
-  var whyEl = document.getElementById('why-section');
-  if (whyEl) {
-    var agreeTxt  = lang === 'he' ? '🟢 נושאים שבהם אתם מסכימים' : '🟢 Topics you agree on';
-    var disagreeTxt = lang === 'he' ? '🔴 נושאים שבהם אתם חלוקים' : '🔴 Topics you disagree on';
-    var html = '<div class="why-box">';
-    html += '<h3 class="why-title">' + (lang === 'he' ? 'למה ' + topName + '?' : 'Why ' + topName + '?') + '</h3>';
-    if (why.agreements.length) {
-      html += '<p class="why-label">' + agreeTxt + '</p><ul class="why-list">';
-      why.agreements.forEach(function(a) { html += '<li>' + a.topic + '</li>'; });
-      html += '</ul>';
-    }
-    if (why.disagreements.length) {
-      html += '<p class="why-label">' + disagreeTxt + '</p><ul class="why-list why-list-red">';
-      why.disagreements.forEach(function(a) { html += '<li>' + a.topic + '</li>'; });
-      html += '</ul>';
-    }
-    html += '</div>';
-    whyEl.innerHTML = html;
-    whyEl.style.display = 'block';
-  }
-
-  // Share button
+  var topName = isHe ? PARTIES_DISPLAY[topKey].he : (PARTIES_DISPLAY[topKey].en || PARTIES_DISPLAY[topKey].he);
   var shareEl = document.getElementById('share-btn');
   if (shareEl) {
-    shareEl.textContent = lang === 'he' ? '📤 שתף תוצאה' : '📤 Share Result';
+    shareEl.textContent = isHe ? '📤 שתף תוצאה' : '📤 Share Result';
     shareEl.onclick = function() { shareResult(topName, topPct, lang); };
     shareEl.style.display = 'inline-flex';
   }
+  var whyEl = document.getElementById('why-section');
+  if (whyEl) { whyEl.style.display = 'none'; }
 
   var headerH2 = document.querySelector('.site-header') ? document.querySelector('.site-header').offsetHeight : 70;
   window.scrollTo({ top: document.getElementById('results-section').offsetTop - headerH2, behavior: 'smooth' });
