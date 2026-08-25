@@ -134,12 +134,14 @@
       <span data-lang="en">Based on your answers, here is your match with each party:</span>
     </p>
     <div class="results-grid" id="results-grid"></div>
+    <div id="why-section" style="display:none;"></div>
     <div class="results-cta">
       <button class="btn btn-outline" onclick="restartQuiz()">
         <span data-lang="he">שחק שוב ←</span>
         <span data-lang="en">Try Again ←</span>
       </button>
-      <a href="parties.html" class="btn btn-primary">
+      <button class="btn btn-primary" id="share-btn" style="display:none;"></button>
+      <a href="parties.html" class="btn btn-outline">
         <span data-lang="he">קרא עוד על המפלגות ←</span>
         <span data-lang="en">Learn More About the Parties ←</span>
       </a>
@@ -485,8 +487,9 @@ var PARTIES_DISPLAY = {
 initLang();
 
 // ── State ──────────────────────────────────────────────────
-var currentQ   = 0;
-var scores     = {};
+var currentQ      = 0;
+var scores        = {};
+var chosenAnswers = [];
 var currentLang = getLang();
 
 window.addEventListener('langchange', function(e) {
@@ -506,6 +509,7 @@ var quizStartTime = 0;
 
 function startQuiz() {
   currentQ = 0;
+  chosenAnswers = [];
   quizStartTime = Date.now();
   resetScores();
   document.getElementById('quiz-section').style.display    = 'block';
@@ -517,7 +521,46 @@ function startQuiz() {
   window.scrollTo({ top: document.getElementById('quiz-section').offsetTop - headerH, behavior: 'smooth' });
 }
 
+function computeWhy(topPartyKey) {
+  var questions = currentQuestions();
+  var agreements = [], disagreements = [];
+  chosenAnswers.forEach(function(choice) {
+    var q = questions[choice.q];
+    var ans = q.answers[choice.a];
+    var chosen_score = ans.scores[topPartyKey] || 0;
+    var max_score = Math.max.apply(null, q.answers.map(function(a) { return a.scores[topPartyKey] || 0; }));
+    var min_score = Math.min.apply(null, q.answers.map(function(a) { return a.scores[topPartyKey] || 0; }));
+    var diff = chosen_score - max_score;
+    if (diff >= -1) {
+      agreements.push({ topic: q.topic });
+    } else if (chosen_score <= min_score + 1) {
+      disagreements.push({ topic: q.topic, diff: diff });
+    }
+  });
+  disagreements.sort(function(a, b) { return a.diff - b.diff; });
+  return { agreements: agreements.slice(0, 3), disagreements: disagreements.slice(0, 2) };
+}
+
+function shareResult(topName, topPct, lang) {
+  var text = lang === 'he'
+    ? '🧭 המצפן הפוליטי שלי: ' + topName + ' — ' + topPct + '% התאמה\nבדוק את שלך: https://hamatzpen.life'
+    : '🧭 My political compass: ' + topName + ' — ' + topPct + '% match\nCheck yours: https://hamatzpen.life';
+  var btn = document.getElementById('share-btn');
+  if (navigator.share) {
+    navigator.share({ text: text }).catch(function() {});
+  } else {
+    navigator.clipboard.writeText(text).then(function() {
+      if (btn) { btn.textContent = lang === 'he' ? '✓ הועתק!' : '✓ Copied!'; setTimeout(function() { btn.textContent = lang === 'he' ? '📤 שתף תוצאה' : '📤 Share Result'; }, 2000); }
+    }).catch(function() { prompt('Copy this:', text); });
+  }
+}
+
 function restartQuiz() {
+  chosenAnswers = [];
+  var whyEl = document.getElementById('why-section');
+  if (whyEl) { whyEl.style.display = 'none'; whyEl.innerHTML = ''; }
+  var shareEl = document.getElementById('share-btn');
+  if (shareEl) { shareEl.style.display = 'none'; }
   document.getElementById('results-section').style.display = 'none';
   document.getElementById('home').style.display            = 'block';
   document.getElementById('how').style.display             = 'block';
@@ -562,6 +605,7 @@ function selectAnswer(answerIndex) {
   var q      = currentQuestions()[currentQ];
   var chosen = q.answers[answerIndex];
 
+  chosenAnswers.push({ q: currentQ, a: answerIndex });
   Object.entries(chosen.scores).forEach(function(entry) {
     var party = entry[0], pts = entry[1];
     if (scores[party] !== undefined) scores[party] += pts;
@@ -664,6 +708,40 @@ function showResults() {
       setTimeout(function() { bar.style.width = pct + '%'; }, 50);
     });
   });
+
+  // "Why" section for top match
+  var topKey  = sorted[0][0];
+  var topPct  = sorted[0][1];
+  var topName = lang === 'he' ? PARTIES_DISPLAY[topKey].he : (PARTIES_DISPLAY[topKey].en || PARTIES_DISPLAY[topKey].he);
+  var why = computeWhy(topKey);
+  var whyEl = document.getElementById('why-section');
+  if (whyEl) {
+    var agreeTxt  = lang === 'he' ? '🟢 נושאים שבהם אתם מסכימים' : '🟢 Topics you agree on';
+    var disagreeTxt = lang === 'he' ? '🔴 נושאים שבהם אתם חלוקים' : '🔴 Topics you disagree on';
+    var html = '<div class="why-box">';
+    html += '<h3 class="why-title">' + (lang === 'he' ? 'למה ' + topName + '?' : 'Why ' + topName + '?') + '</h3>';
+    if (why.agreements.length) {
+      html += '<p class="why-label">' + agreeTxt + '</p><ul class="why-list">';
+      why.agreements.forEach(function(a) { html += '<li>' + a.topic + '</li>'; });
+      html += '</ul>';
+    }
+    if (why.disagreements.length) {
+      html += '<p class="why-label">' + disagreeTxt + '</p><ul class="why-list why-list-red">';
+      why.disagreements.forEach(function(a) { html += '<li>' + a.topic + '</li>'; });
+      html += '</ul>';
+    }
+    html += '</div>';
+    whyEl.innerHTML = html;
+    whyEl.style.display = 'block';
+  }
+
+  // Share button
+  var shareEl = document.getElementById('share-btn');
+  if (shareEl) {
+    shareEl.textContent = lang === 'he' ? '📤 שתף תוצאה' : '📤 Share Result';
+    shareEl.onclick = function() { shareResult(topName, topPct, lang); };
+    shareEl.style.display = 'inline-flex';
+  }
 
   var headerH2 = document.querySelector('.site-header') ? document.querySelector('.site-header').offsetHeight : 70;
   window.scrollTo({ top: document.getElementById('results-section').offsetTop - headerH2, behavior: 'smooth' });
