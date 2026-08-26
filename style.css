@@ -357,14 +357,6 @@ a:hover { text-decoration: underline; }
 .result-row.top-match .result-bar {
   background: linear-gradient(90deg, var(--gold), #b45309);
 }
-.result-pct {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: var(--ink);
-  min-width: 56px;
-  text-align: center;
-}
-.result-row.top-match .result-pct { color: var(--gold); }
 .result-link {
   font-size: .8rem;
   color: var(--ink-mid);
@@ -387,53 +379,68 @@ a:hover { text-decoration: underline; }
 }
 .likert-btn {
   width: 100%;
-  padding: 14px 18px;
+  padding: 15px 18px;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: 10px;
-  border: 2px solid transparent;
-  background: rgba(255,255,255,.07);
-  color: var(--text);
+  border: 3px solid transparent;
+  background: var(--lk-color);
+  color: #fff;
   cursor: pointer;
   text-align: center;
-  transition: background .15s, border-color .15s, transform .1s;
-  border-color: rgba(255,255,255,.12);
+  transition: transform .12s, box-shadow .15s, border-color .12s;
+  letter-spacing: .2px;
+  text-shadow: 0 1px 4px rgba(0,0,0,.35);
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
 }
-.likert-btn:hover { background: rgba(255,255,255,.13); transform: translateY(-1px); }
+.likert-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 18px rgba(0,0,0,.22);
+}
 .likert-btn.likert-selected {
-  background: color-mix(in srgb, var(--lk-color) 22%, transparent);
-  border-color: var(--lk-color);
-  color: #fff;
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.9);
+  box-shadow: 0 6px 22px rgba(0,0,0,.28);
 }
+.likert-btn:disabled { cursor: default; }
 
 
 /* ── Result row — updated for accordion ── */
 .result-main {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
 }
-.result-left  { flex: 1; }
+.result-left  { flex: 1; min-width: 0; }
 .result-right {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
   flex-shrink: 0;
+  min-width: 62px;
 }
+.result-pct {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: var(--ink);
+  line-height: 1;
+}
+.result-row.top-match .result-pct { color: var(--gold); }
 .accordion-btn {
   background: none;
-  border: 1px solid rgba(255,255,255,.2);
+  border: 1px solid var(--border);
   color: var(--text-muted);
   border-radius: 6px;
   width: 28px;
-  height: 28px;
+  height: 22px;
   cursor: pointer;
-  font-size: .85rem;
+  font-size: .75rem;
   line-height: 1;
   transition: all .15s;
+  padding: 0;
 }
-.accordion-btn:hover { background: rgba(255,255,255,.08); color: var(--text); }
+.accordion-btn:hover { background: var(--border); color: var(--text); }
 
 /* ── Topic breakdown (accordion body) ── */
 .result-topics {
