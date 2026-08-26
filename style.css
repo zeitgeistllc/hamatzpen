@@ -414,6 +414,9 @@ a:hover { text-decoration: underline; }
   gap: 14px;
 }
 .result-left  { flex: 1; min-width: 0; }
+.result-party-links { display: flex; gap: 6px; margin-top: 4px; }
+.party-link { font-size: 1rem; text-decoration: none; opacity: .8; transition: opacity .15s; }
+.party-link:hover { opacity: 1; }
 .result-right {
   display: flex;
   flex-direction: column;
