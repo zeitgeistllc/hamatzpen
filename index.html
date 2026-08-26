@@ -554,6 +554,7 @@ initLang();
 var currentQ       = 0;
 var currentLang    = getLang();
 var likertAnswers  = []; // [{answer:1-5}]
+var advancing      = false; // ghost-click guard
 
 window.addEventListener('langchange', function(e) {
   currentLang = e.detail;
@@ -634,6 +635,8 @@ function renderQuestion() {
 }
 
 function selectLikert(val) {
+  if (advancing) return;
+  advancing = true;
   likertAnswers[currentQ] = { answer: val };
   document.querySelectorAll('.likert-btn').forEach(function(btn, i) {
     btn.classList.toggle('likert-selected', (5 - i) === val);
@@ -642,6 +645,7 @@ function selectLikert(val) {
   setTimeout(function() {
     currentQ++;
     if (currentQ < QUIZ_LIKERT.length) { renderQuestion(); } else { showResults(); }
+    setTimeout(function() { advancing = false; }, 400);
   }, 350);
 }
 
