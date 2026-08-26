@@ -403,6 +403,8 @@ a:hover { text-decoration: underline; }
   box-shadow: 0 6px 22px rgba(0,0,0,.28);
 }
 .likert-btn:disabled { cursor: default; }
+.likert-btn:focus { outline: none; }
+.likert-btn:focus-visible { outline: 2px solid rgba(255,255,255,.7); outline-offset: 2px; }
 
 
 /* ── Result row — updated for accordion ── */

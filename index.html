@@ -626,7 +626,9 @@ function renderQuestion() {
     btn.style.setProperty('--lk-color', LIKERT_COLORS[i]);
     // restore previous answer if navigating back
     var prev = likertAnswers[currentQ];
-    if (prev && prev.answer === val) btn.classList.add('likert-selected');
+    if (prev && prev.answer === val) { btn.classList.add('likert-selected'); btn.disabled = true; }
+    // touchstart + preventDefault kills ghost click on mobile; onclick handles desktop
+    btn.addEventListener('touchstart', (function(v){ return function(e) { e.preventDefault(); selectLikert(v); }; })(val), { passive: false });
     btn.onclick = (function(v){ return function() { selectLikert(v); }; })(val);
     grid.appendChild(btn);
   });
