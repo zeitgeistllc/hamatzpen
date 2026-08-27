@@ -143,6 +143,20 @@
     </p>
     <div class="results-grid" id="results-grid"></div>
     <div id="why-section" style="display:none;"></div>
+
+    <!-- National snapshot -->
+    <div id="snapshot-section" style="display:none; margin-top:36px;">
+      <h3 class="snapshot-title">
+        <span data-lang="he">📊 איך הצביעו שאר המשתתפים?</span>
+        <span data-lang="en">📊 How did other participants vote?</span>
+      </h3>
+      <p class="snapshot-sub">
+        <span data-lang="he">אחוז המשתתפים שההתאמה הגבוהה ביותר שלהם הייתה לכל מפלגה</span>
+        <span data-lang="en">Share of participants whose top match was each party</span>
+      </p>
+      <div id="snapshot-bars"></div>
+    </div>
+
     <div class="results-cta">
       <button class="btn btn-outline" onclick="restartQuiz()">
         <span data-lang="he">שחק שוב ←</span>
@@ -806,6 +820,50 @@ function showResults() {
 
   var headerH2 = document.querySelector('.site-header') ? document.querySelector('.site-header').offsetHeight : 70;
   window.scrollTo({ top: document.getElementById('results-section').offsetTop - headerH2, behavior: 'smooth' });
+
+  // Load national snapshot
+  loadSnapshot(isHe);
+}
+
+function loadSnapshot(isHe) {
+  fetch('/api/stats')
+    .then(function(r) { return r.json(); })
+    .then(function(data) {
+      var topPct = data.topPct || {};
+      // sort by pct desc, filter > 0
+      var entries = Object.entries(topPct)
+        .filter(function(e) { return e[1] > 0; })
+        .sort(function(a, b) { return b[1] - a[1]; });
+      if (!entries.length) return;
+
+      var container = document.getElementById('snapshot-bars');
+      container.innerHTML = '';
+      entries.forEach(function(e) {
+        var key = e[0], pct = e[1];
+        var p = PARTIES_DISPLAY[key];
+        if (!p) return;
+        var name = isHe ? p.he : (p.en || p.he);
+        var row = document.createElement('div');
+        row.className = 'snap-row';
+        row.innerHTML =
+          '<span class="snap-name">' + name + '</span>' +
+          '<div class="snap-bar-wrap">' +
+            '<div class="snap-bar" style="width:0%" data-w="' + pct + '"></div>' +
+          '</div>' +
+          '<span class="snap-pct">' + pct + '%</span>';
+        container.appendChild(row);
+      });
+
+      // animate bars
+      requestAnimationFrame(function() {
+        container.querySelectorAll('.snap-bar').forEach(function(b) {
+          setTimeout(function() { b.style.width = b.getAttribute('data-w') + '%'; }, 80);
+        });
+      });
+
+      document.getElementById('snapshot-section').style.display = 'block';
+    })
+    .catch(function() {}); // silently skip if API fails
 }
 </script>
 </body>

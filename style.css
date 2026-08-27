@@ -414,6 +414,15 @@ a:hover { text-decoration: underline; }
   gap: 14px;
 }
 .result-left  { flex: 1; min-width: 0; }
+
+/* ── National snapshot ── */
+.snapshot-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; color: var(--ink); }
+.snapshot-sub   { font-size: .82rem; color: var(--muted); margin-bottom: 18px; }
+.snap-row { display: grid; grid-template-columns: 110px 1fr 42px; align-items: center; gap: 10px; margin-bottom: 9px; }
+.snap-name { font-size: .82rem; font-weight: 600; color: var(--ink); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.snap-bar-wrap { background: rgba(0,0,0,.08); border-radius: 4px; height: 10px; overflow: hidden; }
+.snap-bar { height: 100%; border-radius: 4px; background: var(--accent); transition: width .6s ease; width: 0%; }
+.snap-pct { font-size: .8rem; font-weight: 700; color: var(--muted); text-align: left; }
 .result-party-links { display: flex; gap: 6px; margin-top: 4px; }
 .party-link { font-size: 1rem; text-decoration: none; opacity: .8; transition: opacity .15s; }
 .party-link:hover { opacity: 1; }
