@@ -416,16 +416,20 @@ a:hover { text-decoration: underline; }
 .result-left  { flex: 1; min-width: 0; }
 
 /* ── National snapshot ── */
-.snapshot-title { font-size: 1.1rem; font-weight: 800; margin-bottom: 4px; color: var(--ink); }
-.snapshot-sub   { font-size: .82rem; color: var(--muted); margin-bottom: 18px; }
-.snap-row { display: grid; grid-template-columns: 110px 1fr 42px; align-items: center; gap: 10px; margin-bottom: 9px; }
-.snap-name { font-size: .82rem; font-weight: 600; color: var(--ink); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.snap-bar-wrap { background: rgba(0,0,0,.08); border-radius: 4px; height: 10px; overflow: hidden; }
-.snap-bar { height: 100%; border-radius: 4px; background: var(--accent); transition: width .6s ease; width: 0%; }
-.snap-pct { font-size: .8rem; font-weight: 700; color: var(--muted); text-align: left; }
-.result-party-links { display: flex; gap: 6px; margin-top: 4px; }
-.party-link { font-size: 1rem; text-decoration: none; opacity: .8; transition: opacity .15s; }
+.snapshot-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 3px; color: var(--ink); }
+.snapshot-sub   { font-size: .78rem; color: var(--muted); margin-bottom: 12px; }
+.snap-row { display: grid; grid-template-columns: 100px 1fr 36px; align-items: center; gap: 8px; margin-bottom: 6px; }
+.snap-name { font-size: .78rem; font-weight: 600; color: var(--ink); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.snap-bar-wrap { height: 8px; overflow: hidden; border-radius: 4px; background: transparent; }
+.snap-bar { height: 100%; border-radius: 4px; background: var(--accent); transition: width .55s ease; width: 0%; }
+.snap-pct { font-size: .75rem; font-weight: 700; color: var(--ink); opacity: .7; }
+
+/* ── Hero counter ── */
+.hero-counter { font-size: .95rem; font-weight: 600; color: var(--accent); margin-bottom: 10px; }
+.result-party-links { display: flex; gap: 6px; margin-top: 4px; align-items: center; }
+.party-link { font-size: 1rem; text-decoration: none; opacity: .8; transition: opacity .15s; display: inline-flex; align-items: center; }
 .party-link:hover { opacity: 1; }
+.party-link-fb svg { display: block; }
 .result-right {
   display: flex;
   flex-direction: column;

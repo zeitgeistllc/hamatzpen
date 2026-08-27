@@ -17,10 +17,11 @@ export default async function handler(req, res) {
 
   res.setHeader('Cache-Control', 's-maxage=300, stale-while-revalidate=60');
 
-  const [topRaw, scoreSum, scoreCnt] = await Promise.all([
+  const [topRaw, scoreSum, scoreCnt, totalRaw] = await Promise.all([
     redisGet(['HGETALL', 'hz:top']),
     redisGet(['HGETALL', 'hz:score_sum']),
     redisGet(['HGETALL', 'hz:score_cnt']),
+    redisGet(['GET', 'hz:total']),
   ]);
 
   // top-match distribution as percentages
@@ -51,5 +52,6 @@ export default async function handler(req, res) {
     if (cntMap[k]) avgPct[k] = Math.round(sumMap[k] / cntMap[k]);
   });
 
-  res.status(200).json({ topPct, avgPct });
+  const total = Math.max(0, Number(totalRaw) || 0);
+  res.status(200).json({ topPct, avgPct, total });
 }
