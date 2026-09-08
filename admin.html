@@ -108,16 +108,16 @@ const KEY = new URLSearchParams(location.search).get('key') || '';
 
 const PARTY_NAMES = {
   likud:'הליכוד', shas:'ש״ס', yahadut:'יהדות התורה', tzionit:'הציונות הדתית',
-  otzma:'עוצמה יהודית', together:'ביחד', yashar:'יש״ר', gantz:'המחנה הממלכתי',
-  beytenu:'ישראל ביתנו', democrats:'הדמוקרטים', hadash:'חד״ש-תע״ל',
-  raam:'רע״מ', miluim:'מפלגת המילואים',
+  otzma:'עוצמה יהודית', together:'ביחד', yashar:'יש״ר', gantz:'כחול לבן',
+  beytenu:'ישראל ביתנו', democrats:'הדמוקרטים', hadash:'הרשימה המשותפת',
+  raam:'רע״מ', miluim:'הבית הציוני - המילואימניקים', amcha:'עמך ישראל',
 };
 
 const PARTY_COLORS = {
   likud:'#1a56db', shas:'#7c3aed', yahadut:'#6d28d9', tzionit:'#b45309',
   otzma:'#dc2626', together:'#0891b2', yashar:'#2563eb', gantz:'#0369a1',
   beytenu:'#0284c7', democrats:'#16a34a', hadash:'#15803d', raam:'#ea580c',
-  miluim:'#475569',
+  miluim:'#475569', amcha:'#92400e',
 };
 
 async function loadStats() {

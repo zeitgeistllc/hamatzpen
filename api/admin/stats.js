@@ -1,54 +1,53 @@
-// GET /api/admin/stats?key=... — aggregated poll stats (key-gated)
+// GET /api/admin/stats?key=... — full raw stats for admin dashboard
 const REDIS_URL   = process.env.UPSTASH_REDIS_REST_URL;
 const REDIS_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
 const ADMIN_KEY   = process.env.ADMIN_KEY || 'hamatzpen-admin-2026';
 
-async function redisGet(cmd) {
-  const res = await fetch(`${REDIS_URL}/${cmd.map(c => encodeURIComponent(c)).join('/')}`, {
-    headers: { Authorization: `Bearer ${REDIS_TOKEN}` },
+async function redisPipeline(commands) {
+  const res = await fetch(`${REDIS_URL}/pipeline`, {
+    method: 'POST',
+    headers: { Authorization: `Bearer ${REDIS_TOKEN}`, 'Content-Type': 'application/json' },
+    body: JSON.stringify(commands),
   });
-  const data = await res.json();
-  return data.result;
-}
-
-// HGETALL returns a flat array [k, v, k, v, ...] — convert to object
-function toObj(arr) {
-  if (!Array.isArray(arr)) return {};
-  const o = {};
-  for (let i = 0; i < arr.length; i += 2) o[arr[i]] = arr[i + 1];
-  return o;
+  return res.json();
 }
 
 export default async function handler(req, res) {
+  if (req.method !== 'GET') return res.status(405).end();
   if (req.query.key !== ADMIN_KEY) return res.status(403).json({ error: 'forbidden' });
 
-  const [total, byParty, byDay, scoreSum, scoreCnt] = await Promise.all([
-    redisGet(['GET',    'hz:total']),
-    redisGet(['HGETALL','hz:top']),
-    redisGet(['HGETALL','hz:day']),
-    redisGet(['HGETALL','hz:score_sum']),
-    redisGet(['HGETALL','hz:score_cnt']),
+  res.setHeader('Cache-Control', 'no-store');
+
+  const results = await redisPipeline([
+    ['GET',    'hz:total'],
+    ['HGETALL','hz:top'],
+    ['HGETALL','hz:day'],
+    ['HGETALL','hz:score_sum'],
+    ['HGETALL','hz:score_cnt'],
   ]);
 
-  const byPartyObj  = toObj(byParty);
-  const byDayObj    = toObj(byDay);
-  const scoreSumObj = toObj(scoreSum);
-  const scoreCntObj = toObj(scoreCnt);
+  const [totalRaw, topRaw, dayRaw, sumRaw, cntRaw] = results.map(r => r?.result);
 
-  // Numeric conversions
-  Object.keys(byPartyObj).forEach(k => { byPartyObj[k] = Number(byPartyObj[k]); });
-  Object.keys(byDayObj).forEach(k  => { byDayObj[k]   = Number(byDayObj[k]); });
+  const total = Math.max(0, Number(totalRaw) || 0);
 
+  // byParty: raw counts
+  const byParty = {};
+  if (Array.isArray(topRaw)) {
+    for (let i = 0; i < topRaw.length; i += 2) byParty[topRaw[i]] = Number(topRaw[i+1]) || 0;
+  }
+
+  // byDay: raw counts
+  const byDay = {};
+  if (Array.isArray(dayRaw)) {
+    for (let i = 0; i < dayRaw.length; i += 2) byDay[dayRaw[i]] = Number(dayRaw[i+1]) || 0;
+  }
+
+  // avgScores: average match % per party
+  const sumMap = {}, cntMap = {};
+  if (Array.isArray(sumRaw)) for (let i = 0; i < sumRaw.length; i += 2) sumMap[sumRaw[i]] = Number(sumRaw[i+1]) || 0;
+  if (Array.isArray(cntRaw)) for (let i = 0; i < cntRaw.length; i += 2) cntMap[cntRaw[i]] = Number(cntRaw[i+1]) || 0;
   const avgScores = {};
-  Object.keys(scoreSumObj).forEach(p => {
-    const cnt = Number(scoreCntObj[p]) || 1;
-    avgScores[p] = Math.round(Number(scoreSumObj[p]) / cnt);
-  });
+  Object.keys(sumMap).forEach(k => { if (cntMap[k]) avgScores[k] = Math.round(sumMap[k] / cntMap[k]); });
 
-  res.status(200).json({
-    total:     Number(total) || 0,
-    byParty:   byPartyObj,
-    avgScores,
-    byDay:     byDayObj,
-  });
+  res.status(200).json({ total, byParty, byDay, avgScores });
 }
