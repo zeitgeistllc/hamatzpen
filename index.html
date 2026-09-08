@@ -857,12 +857,7 @@ function loadSnapshot(isHe) {
 
       var container = document.getElementById('snapshot-bars');
       container.innerHTML = '';
-      entries.forEach(function(e) {
-        var key = e[0], pct = e[1];
-        var p = PARTIES_DISPLAY[key];
-        if (!p) return;
-        var name = isHe ? p.he : (p.en || p.he);
-        var maxPct = entries[0][1];
+      var maxPct = entries[0][1];
       entries.forEach(function(e) {
         var key = e[0], pct = e[1];
         var p = PARTIES_DISPLAY[key];
